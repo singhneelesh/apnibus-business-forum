@@ -1,705 +1,2037 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>GPS Tracking</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-    margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(55, 53, 47, 1);
-}
-.highlight-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.highlight-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.highlight-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.highlight-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.highlight-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.highlight-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.highlight-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.highlight-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.highlight-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.highlight-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.highlight-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.highlight-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.highlight-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.highlight-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.highlight-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.block-color-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.block-color-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.block-color-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.block-color-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.block-color-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.block-color-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.block-color-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.block-color-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.block-color-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.block-color-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.block-color-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.block-color-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
-.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
-.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
-.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
-.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
-.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
-.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
-.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
-.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
-.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
-.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
-.select-value-color-pageGlass { background-color: undefined; }
-.select-value-color-washGlass { background-color: undefined; }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="2baa871c-7ba4-4a52-81a6-6ba613f22375" class="page sans"><header><img class="page-cover-image" src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160354%201.jpg" style="object-position:center 12.419999999999998%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🖲️</span></div><h1 class="page-title">GPS Tracking</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-person"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesPerson"><path d="M10.9536 7.90088C12.217 7.90088 13.2559 6.79468 13.2559 5.38525C13.2559 4.01514 12.2114 2.92017 10.9536 2.92017C9.70142 2.92017 8.65137 4.02637 8.65698 5.39087C8.6626 6.79468 9.69019 7.90088 10.9536 7.90088ZM4.4231 8.03003C5.52368 8.03003 6.42212 7.05859 6.42212 5.83447C6.42212 4.63843 5.51245 3.68945 4.4231 3.68945C3.33374 3.68945 2.41846 4.64966 2.41846 5.84009C2.42407 7.05859 3.32251 8.03003 4.4231 8.03003ZM1.37964 13.168H5.49561C4.87231 12.292 5.43384 10.6074 6.78711 9.51807C6.18628 9.14746 5.37769 8.87231 4.4231 8.87231C1.95239 8.87231 0.262207 10.6917 0.262207 12.1628C0.262207 12.7974 0.548584 13.168 1.37964 13.168ZM7.50024 13.168H14.407C15.4009 13.168 15.7322 12.8423 15.7322 12.2864C15.7322 10.8489 13.8679 8.88354 10.9536 8.88354C8.04492 8.88354 6.17505 10.8489 6.17505 12.2864C6.17505 12.8423 6.50635 13.168 7.50024 13.168Z"></path></svg></span>Owner</th><td><span class="user"><img src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Dot.jpg" class="icon user-icon"/>You</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th><td><span class="selected-value select-value-color-purple">Completed</span></td></tr></tbody></table></header><div class="page-body"><nav id="f93d8199-9dde-4e6e-9d3e-84aa3b903f62" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5c8024ea-2626-4d2b-99e4-549d32f49571"><strong><strong>Overview</strong></strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cda15919-b467-4c45-99c8-c0467207cd38">Widgets →</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#cabf4e08-a2de-4d0a-886e-7677f0927783">Home GPS Card</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#91ad4d2f-72a3-4611-b516-636495b6f4eb">Pages →</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ad3b0bb8-7444-4c80-a6e5-70d38810bb0e">FAQs</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4bb4fbc4-e8ae-4ec2-8def-8fde3ed7d0bc">Tutorials</a></div></nav><h1 id="5c8024ea-2626-4d2b-99e4-549d32f49571" class=""><strong><strong>Overview</strong></strong></h1><p id="dc060703-d007-4a83-88f3-5ea1f95ec924" class="">Effortlessly track your buses in real-time with our “GPS feature”. Monitor live locations, trip details, and historical routes, ensuring efficient operations for bus owners.</p><h2 id="cda15919-b467-4c45-99c8-c0467207cd38" class="">Widgets →</h2><figure id="e4dea0fa-693a-4c60-bb71-37200fbd5766" class="image" style="text-align:left"><a href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160315.jpg"><img style="width:336px" src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160315.jpg"/></a></figure><details close=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Home GPS Card</summary><div class="indented"><p id="0fc4c945-e13c-43d9-ba03-969d44133047" class="">The Home GPS Tracking Card shows bus owners the status of their buses at a glance. It displays information like bus number, whether it&#x27;s on or off, the route status, and the distance traveled today, helping owners keep track easily.</p><ul id="ee9d839b-aea1-48e3-aded-e7d6ca752a83" class="bulleted-list"><li style="list-style-type:disc"><strong>Bus Number:</strong> Tells you which bus it is, like its name.</li></ul><ul id="27779d03-21e8-49d2-a0fa-d5ee846ac21a" class="bulleted-list"><li style="list-style-type:disc"><strong>Ignition Status:</strong> Whether the bus is on or off.</li></ul><ul id="9973b9a2-acff-41dd-a17b-679a2d126b72" class="bulleted-list"><li style="list-style-type:disc"><strong>Track Status:</strong> Shows if the bus is following its route or not.</li></ul><ul id="8725c59f-69b9-4140-b9d8-1f8d35451893" class="bulleted-list"><li style="list-style-type:disc"><strong>Speed &amp; Distance Today:</strong> Tells how fast the bus is going and how far it traveled today.</li></ul><ul id="b791fd04-8529-463e-85ad-526d70e1465a" class="bulleted-list"><li style="list-style-type:disc"><strong>Location:</strong> Where the bus is right now, like its address.</li></ul></div></details><details close=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Pages →</summary><div class="indented"><ul id="4b702415-3dc3-432f-8d22-94e21eb9f154" class="toggle"><li><details close=""><summary><strong>GPS Tracking List Page</strong></summary><p id="7ca11f27-2dbb-40a5-a0d6-74d649291eda" class="">
-</p><figure id="54d04b97-cd33-493b-9b4f-3f72f217515c" class="image"><a href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160354.jpg"><img style="width:288px" src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160354.jpg"/></a></figure><p id="a901294f-56e7-419f-8c43-f9955c9ea840" class="">
-</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a8fc640c-5369-4591-9a33-5a1930d19d5a"><div style="font-size:1.5em"><span class="icon">📍</span></div><div style="width:100%">The GPS Tracking List Page is like a control center for bus operators. It shows a map with all buses, each having a card for details.</div></figure><p id="d6f2f644-298d-43bd-822d-d4c61ff2dc47" class="">
-</p><h2 id="be3eb1ff-5b9b-47c2-91de-8ea509148f22" class="">Google Map →</h2><ul id="af1fc5c5-66cd-4ea9-9d86-65c379d71063" class="bulleted-list"><li style="list-style-type:disc"><strong>Markers: </strong>Shows the various marker on the map, refers to the buses linked to the user logged-in.</li></ul><ul id="a0d101fb-0b68-4b2e-b85f-203b6904cf85" class="bulleted-list"><li style="list-style-type:disc"><strong>Info-window: </strong>In this we are able to see the Bus-Number when we click on the marker, to verify that which bus is this.</li></ul><p id="e7c716e6-b415-4abc-84cc-c9466c439f63" class="">
-</p><h2 id="303c9d31-040f-4190-a812-68a0f3b5a7bc" class="">Bus Card →</h2><ul id="383708f2-5568-4863-862d-78f0421760e9" class="bulleted-list"><li style="list-style-type:disc"><strong>Bus Info:</strong> Displays Bus Number and icons.</li></ul><ul id="2759bbf8-6d58-4342-9f7e-460d19179f09" class="bulleted-list"><li style="list-style-type:disc"><strong>Status Indicators:</strong> Shows if the bus is moving on track and its ignition status.</li></ul><ul id="344c8941-7cc5-48f5-b7a6-caaf9cb83257" class="bulleted-list"><li style="list-style-type:disc"><strong>Trip Stats:</strong> Includes total distance, stops, and current speed.</li></ul><ul id="7791a57b-5bfb-4c24-bba1-4c9895803a21" class="bulleted-list"><li style="list-style-type:disc"><strong>Geo: </strong>Shows the bus live location in address format.</li></ul><p id="afdbe804-267c-48e0-bcaf-1bb9afdf29ea" class="">
-</p><h2 id="2b9c2a96-f7c8-44c6-959f-91dcd21282b9" class="">Additional Features →</h2><ul id="8984c0d6-9599-403a-8838-4e152ed69a9b" class="bulleted-list"><li style="list-style-type:disc"><strong>Last Sync Time:</strong> Tells when the bus location was last updated.</li></ul><ul id="4726a09f-a291-4d81-bc39-ca754e7d4912" class="bulleted-list"><li style="list-style-type:disc"><strong>Play Journey: </strong>A simple way to see the historical route of the specific bus.</li></ul><ul id="535de2f0-7a61-4529-b53e-d7bb6b078a37" class="bulleted-list"><li style="list-style-type:disc"><strong>Share Live Location: </strong>Shares the live location of the bus via link.</li></ul><p id="c2bcd831-429d-443b-a6c8-5ca35a152663" class="">
-</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e2230180-da92-4aba-9ff2-4fa6dd980e68"><div style="font-size:1.5em"><span class="icon">😵‍💫</span></div><div style="width:100%"><strong>Troubleshooting: </strong>• If no buses are shown, it might mean none are linked or have no device ID.</div></figure></details></li></ul><ul id="f8623b80-1526-4169-8765-ada05bdd64ab" class="toggle"><li><details close=""><summary><strong>GPS Live Tracking Page</strong></summary><p id="b6fd4552-c135-4114-a397-1bc0ea214137" class="">
-</p><figure id="34742c6f-7687-4601-b5fe-f99aac47a30b" class="image"><a href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160559.jpg"><img style="width:240px" src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160559.jpg"/></a></figure><p id="45fd7cc1-691b-46bf-b37c-5b26be9472e1" class="">
-</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6ddcf7b1-fc6a-4244-8732-e9035da635ac"><div style="font-size:1.5em"><span class="icon">♥️</span></div><div style="width:100%">The Live Tracking Page is the key-page of real-time bus monitoring. It&#x27;s divided into three key sections providing comprehensive information.</div></figure><h2 id="839df172-87c0-477c-b30e-9379439e916a" class="">Profiling Stats Widget →</h2><ul id="a9cab610-1e1d-4f8a-b9a0-47ce59055ed1" class="bulleted-list"><li style="list-style-type:disc"><strong>Live Location:</strong> The current address of the bus.</li></ul><ul id="9a3cf9f1-3446-4263-b67f-abf84b747830" class="bulleted-list"><li style="list-style-type:disc"><strong>Speed:</strong> The real-time speed of the bus.</li></ul><ul id="5513242f-4dc5-4f4b-b9f0-eb49ff9ad13e" class="bulleted-list"><li style="list-style-type:disc"><strong>Ignition Status:</strong> Indicates whether the bus is on or off.</li></ul><ul id="75c3ef35-8f43-449b-90da-cb1a7c36c3d3" class="bulleted-list"><li style="list-style-type:disc"><strong>Last GPS Sync Time:</strong> Displays the time of the last location update.</li></ul><ul id="fc832636-5556-4b92-9d31-661205e3fd65" class="bulleted-list"><li style="list-style-type:disc"><strong>Total Distance Today:</strong> Shows the distance covered by the bus today.</li></ul><h2 id="971d5550-edee-40e6-a365-484671b8faeb" class="">Google Map →</h2><ul id="f2d76e05-2e24-41dc-aacb-8f94c88c416c" class="bulleted-list"><li style="list-style-type:disc"><strong>Real-time Map:</strong> Displays the live location of the bus.</li></ul><ul id="1b5f1159-a869-4c1d-be08-1afbe0979bf6" class="bulleted-list"><li style="list-style-type:disc"><strong>Polyline Route:</strong> Represents the route the bus is supposed to follow.</li></ul><ul id="e9074722-fe15-4b41-856e-74b05ccf1c54" class="bulleted-list"><li style="list-style-type:disc"><strong>Stoppage Markers:</strong> Highlight key stoppage points on the map.</li></ul><ul id="ae5508c2-d6dd-42b5-bbbd-d04938b215e2" class="bulleted-list"><li style="list-style-type:disc"><strong>Marker Info Window:</strong> Provides details on clicking a stoppage marker - Stoppage Name, Arrival Time, Departure Time, Profit, OnBoarded Passengers, and DeBoarded Passengers.</li></ul><p id="0ca56606-6da9-4e28-b540-4650af5706b6" class="">
-</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="fa900d8f-13cd-44a6-9118-0321a84cb3cc"><div style="font-size:1.5em"><span class="icon">📂</span></div><div style="width:100%"><strong>Dynamic Update:</strong> All information on this page is continuously updated for the ongoing trip.</div></figure><p id="fae00ae0-a9f6-4e46-88d1-2c45403f080f" class="">
-</p><h2 id="ddd19beb-9172-4d20-842e-ab1d16516195" class="">Itinerary Bottom Sheet →</h2><blockquote id="a13c29ab-e34a-4956-a274-13af9130700a" class="">This bottom sheet encapsulates essential real-time and historical trip details, providing operators with a comprehensive overview of the ongoing journey.</blockquote><p id="0d04e033-da96-48df-9204-7edf68d353b6" class="">
-</p><ol type="1" id="30e25ff1-a413-4286-ba50-e9d8a62007a5" class="numbered-list" start="1"><li><strong>Trip Details (On-Going):</strong><ul id="81e6a0bd-6997-4bc5-8f6e-d0c38975d3e8" class="bulleted-list"><li style="list-style-type:disc"><strong>Source Town:</strong> Where the trip started.</li></ul><ul id="549fc45f-98b9-425d-a1c5-97f1683a93c8" class="bulleted-list"><li style="list-style-type:disc"><strong>Start Time:</strong> The time the bus embarked on the journey.</li></ul><ul id="df3d8be9-5aee-415d-b0e1-7d99a6136058" class="bulleted-list"><li style="list-style-type:disc"><strong>Destination Town:</strong> The planned final destination.</li></ul><ul id="4f685981-8a31-4683-81ad-ce019c005c04" class="bulleted-list"><li style="list-style-type:disc"><strong>Destination Time (if trip ended):</strong> The expected time of reaching the destination if the trip has concluded.</li></ul></li></ol><ol type="1" id="e06510d7-4d61-4996-b423-bf0b49a325e8" class="numbered-list" start="2"><li><strong>Small Hisaab Widget:</strong><ul id="fc801fa0-86fe-4466-9c02-e1c0d28e0c88" class="bulleted-list"><li style="list-style-type:disc"><strong>Trip Earnings Till Now:</strong> The total earnings accumulated during the current trip.</li></ul><ul id="355686ae-869c-4eea-b81f-1c28f6534c88" class="bulleted-list"><li style="list-style-type:disc"><strong>Boarded Passengers:</strong> The count of passengers who have boarded the bus.</li></ul><ul id="8f0f4642-6695-4cf9-ae67-8298c74cefcc" class="bulleted-list"><li style="list-style-type:disc"><strong>Deboarded Passengers:</strong> The count of passengers who have exited the bus.</li></ul><ul id="25157d89-6fc6-4cf1-a257-3cb220d465f9" class="bulleted-list"><li style="list-style-type:disc"><strong>Passengers in Bus:</strong> The current count of passengers still on the bus.</li></ul></li></ol><ol type="1" id="500468d3-ae73-4a19-8901-024db3d46193" class="numbered-list" start="3"><li><strong>Trip HISAAB Button:</strong><ul id="c963867c-0641-41fd-82f2-39fa88b6f6e5" class="bulleted-list"><li style="list-style-type:disc">A quick link to a detailed trip earnings page for more comprehensive financial insights.</li></ul></li></ol><ol type="1" id="65d3008b-7d95-4396-8cac-ce55c9f7cfb7" class="numbered-list" start="4"><li><strong>Itinerary:</strong><ul id="262bf5fc-cbd3-438d-baf2-fb7758a30061" class="bulleted-list"><li style="list-style-type:disc"><strong>Town Name:</strong> The name of each town in the itinerary.</li></ul><ul id="fa266ad7-9683-4958-a845-25f2ea65a74b" class="bulleted-list"><li style="list-style-type:disc"><strong>Arrival Time &amp; Departure Time:</strong> Indicates when the bus arrived and departed from each town.</li></ul><ul id="51a5a345-4425-46db-a777-0529f808fb77" class="bulleted-list"><li style="list-style-type:disc"><strong>Profit:</strong> The financial gain at each town.</li></ul><ul id="f32784ea-0926-4ce3-aaca-13ce046d8edd" class="bulleted-list"><li style="list-style-type:disc"><strong>Luggage:</strong> The amount of luggage loaded or unloaded.</li></ul><ul id="6bb4171a-1339-48e8-af3f-08dfccdaa3f5" class="bulleted-list"><li style="list-style-type:disc"><strong>Passenger Boarded:</strong> The count of passengers getting on at each town.</li></ul><ul id="fbf44896-61cb-405f-ba22-ac178332a234" class="bulleted-list"><li style="list-style-type:disc"><strong>Passenger Deboarded:</strong> The count of passengers disembarking at each town.</li></ul></li></ol><h2 id="901eca53-f025-4a40-b8b0-89ab934a8a9b" class=""><strong>No Route Scenario →</strong></h2><ul id="8ab819d4-6c63-4fde-8ef0-ea620b1dbc34" class="bulleted-list"><li style="list-style-type:disc">If there&#x27;s no route linked to the bus, the itinerary section is not displayed.</li></ul><p id="2497492e-2a08-49d1-be5e-8fee5b7397fa" class="">
-</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="68e1b008-b7ff-4729-bb7d-2718eb879644"><div style="font-size:1.5em"><span class="icon">🦾</span></div><div style="width:100%">This page provides a real-time snapshot of the bus&#x27;s current status, route, and trip details, facilitating effective monitoring for bus operators.</div></figure></details></li></ul><ul id="fc1d1a1d-2033-4acc-83e8-2c016c466291" class="toggle"><li><details close=""><summary><strong>History Replay Page</strong></summary><p id="ef62157f-fb8b-44f6-b04f-4e92b51b5752" class="">
-</p><figure id="b5b39282-3643-496b-a0f5-2b60c6eb9abb" class="image"><a href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160641.jpg"><img style="width:240px" src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160641.jpg"/></a></figure><p id="e08f1dbd-d232-4a76-802b-f4bf2772b388" class="">
-</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="61970725-b87f-431f-a988-55b75ac6a593"><div style="font-size:1.5em"><span class="icon">📜</span></div><div style="width:100%">The History Replay Page is a simple way for reviewing past bus journeys. It offers a detailed insight into historical routes and trip statistics.</div></figure><p id="de6aec41-87ea-4ec2-ac7c-925a75c8f1c3" class="">
-</p><h2 id="60e10755-16bf-4e72-94c3-4f263fa166e3" class="">Trip Stats →</h2><ul id="09247e52-ed65-495c-8a3d-e694d84fe137" class="bulleted-list"><li style="list-style-type:disc"><strong>Total Moved Km and Running Time:</strong> Summarizes the distance covered and the total running time for the selected date.</li></ul><ul id="0c973e8d-89eb-45e1-84a9-c70de4af9aec" class="bulleted-list"><li style="list-style-type:disc"><strong>Total Stops and Stoppage Time:</strong> Provides the total number of stops made and the cumulative stoppage time.</li></ul><p id="a34adf5e-0511-458d-8a4e-8c115b8a2c7d" class="">
-</p><h2 id="7c78f41b-a42a-4375-9cfb-bb8197e77fea" class="">Google Map →</h2><ul id="1037fd41-5e80-4057-8dd9-835b5e4b01c8" class="bulleted-list"><li style="list-style-type:disc"><strong>Historical Route Polyline:</strong> Displays the route taken by the bus on the selected date.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="06a60de5-d4e1-4798-84eb-1f9234cd8b7d"><div style="font-size:1.5em"><span class="icon">🥸</span></div><div style="width:100%"><strong>Default:  </strong>It shows the last 24 hours trip information.</div></figure><p id="82b82efe-9156-473f-9500-7eda64d95103" class="">
-</p><h2 id="d1469f03-430d-4faa-b194-2adc9c69feae" class=""><strong>Slider and Play Pause Button →</strong></h2><ul id="220a37ee-3fb2-4471-aa1c-3026be599567" class="bulleted-list"><li style="list-style-type:disc"><strong>Slider:</strong> Allows users to manually navigate through the historical route.</li></ul><ul id="dcc0482d-34e6-48d3-bd63-dd787c970740" class="bulleted-list"><li style="list-style-type:disc"><strong>Play-Pause: </strong>Allows user to play and pause the route, followed by the bus on the historical dates.</li></ul><ul id="f20aaf31-4dc3-4924-a32f-f038107c5cf5" class="bulleted-list"><li style="list-style-type:disc"><strong>Playback Speed</strong>: Allows user to modify the speed of marker movement to play the route using animation.</li></ul><p id="e32bba0c-5976-4200-9c8f-ad175cceccac" class="">
-</p><h2 id="a3727c19-d6cf-4a00-95f5-d36303bbb3fc" class="">No History Scenario →</h2><blockquote id="06dd33c2-f13b-4cf8-82cc-6fe0074bb411" class="">Informing the user that no historical playback data is available for the selected date.</blockquote></details></li></ul></div></details><h1 id="ad3b0bb8-7444-4c80-a6e5-70d38810bb0e" class="">FAQs</h1><ul id="07adaf02-f384-4661-a4d4-f61601ca36cb" class="toggle"><li><details close=""><summary><strong>Why is the ignition status constantly shimmering on the Home GPS Card?</strong></summary><figure id="b70adb86-63cf-42f0-b2b3-e54e44f09f11" class="image" style="text-align:left"><a href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160410.jpg"><img style="width:384px" src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160410.jpg"/></a></figure><blockquote id="e1e2bdc4-1ffe-4d7b-94c4-eff3e6555763" class="">The shimmer indicates that we are currently unable to retrieve the ignition status from the server. Once we receive the data, the shimmer will be replaced with the actual status.</blockquote></details></li></ul><ul id="2df5b10d-920f-4c2b-bb48-f27556c7ad76" class="toggle"><li><details close=""><summary><strong>I don&#x27;t see any buses on the Home GPS Card. What could be the issue?</strong></summary><blockquote id="c5ecf2c6-375e-4fae-8dcf-f186d17e7916" class="">This might be due to either no buses being linked to the logged-in user or the buses not having a device ID assigned. Please ensure your buses are correctly linked.</blockquote></details></li></ul><ul id="1e72419a-e976-46c6-b81c-76f9594ad229" class="toggle"><li><details close=""><summary><strong>What does it mean when the Home GPS Card displays &quot;Stopped since x mins&quot; instead of the bus speed?</strong></summary><blockquote id="f0cc728a-9b97-42bc-b0a7-dfceb1e95484" class="">This indicates that the bus is currently not moving. The timer shows the duration since the bus came to a halt.</blockquote></details></li></ul><ul id="96f656c9-0c9b-4a21-aaa6-27b83120b5b8" class="toggle"><li><details close=""><summary><strong>The location address on the Home GPS Card seems outdated. How often is it updated?</strong></summary><blockquote id="fbc17195-5386-4dff-aca9-cf8a41ab05b4" class="">The address in this widget is only get updated when we came to this page, or we refresh the page using the refresh indicator.</blockquote></details></li></ul><ul id="38a3594e-9568-491e-ab3c-393a848265f7" class="toggle"><li><details close=""><summary><strong>Why do I see a &quot;No Data Found&quot; widget on the GPS Tracking List Page with no buses displayed?</strong></summary><blockquote id="badbf330-3e14-4b6d-917e-4602e4e26567" class="">This might be due to either no buses being linked to the logged-in user or the buses not having a device ID assigned. Please ensure your buses are correctly linked.</blockquote></details></li></ul><ul id="784bb631-3f53-4fa2-882f-ac875aaeca00" class="toggle"><li><details close=""><summary><strong>I don&#x27;t see any buses on the Home GPS Card. What could be the issue?</strong></summary><blockquote id="36a2ab4b-c0e9-4414-815f-d9e5bbb08e62" class="">The widget appears when no buses are linked to your account or if the buses lack a device ID. Ensure that your buses are correctly linked and have device IDs assigned</blockquote></details></li></ul><ul id="63de007b-83b5-42ad-a997-c6066f191f84" class="toggle"><li><details close=""><summary><strong>What does the &quot;Play Journey&quot; button do on the GPS bus card?</strong></summary><blockquote id="f50f3998-453c-45e8-81d7-47d7525a58e3" class="">Clicking the &quot;Play Journey&quot; button navigates you to the &quot;History Replay Page,&quot; where you can visually review the historical route and details of a specific bus</blockquote></details></li></ul><ul id="0029e5b3-2b26-40ab-8851-1ad419919e40" class="toggle"><li><details close=""><summary><strong>How does the &quot;Share Bus Live Location&quot; feature work on the GPS Tracking List Page?</strong></summary><blockquote id="e51bb12e-bb3e-4e59-ac04-6311671b2eb7" class="">This feature allows you to share the live location of a specific bus via a link, which remains valid for 6 hours. It&#x27;s useful for sharing the real-time location with others.</blockquote><p id="36d81452-c39f-4459-9017-3f73ad350c43" class="">
-</p></details></li></ul><ul id="22cbc64e-efe0-4e4e-b16a-06b114f176d9" class="toggle"><li><details close=""><summary><strong>Why are some buses continuously shimmering on the GPS Tracking List Page?</strong></summary><blockquote id="e677aba5-fe34-4935-97b9-5d29d3d94e54" class="">Shimmering indicates ongoing loading or processing. If it persists, it might be due to change in the deviceId or temporary server issues. The shimmer will be replaced with the actual data once retrieved.</blockquote></details></li></ul><ul id="cf569b19-61a0-45bf-a7d7-314acc62558d" class="toggle"><li><details close=""><summary><strong>Can I see historical routes directly from the GPS Tracking List Page?</strong></summary><blockquote id="262607d0-ee8f-4ee6-aa2d-7b57bcfa4c44" class="">Yes, by clicking on the GPS bus card, you&#x27;ll be directed to the &quot;History Replay Page,&quot; where you can access historical routes, real-time details, and trip statistics for a specific bus.</blockquote></details></li></ul><ul id="34afee82-0092-4f6b-8551-5a98e1f36e5f" class="toggle"><li><details close=""><summary><strong>Why is the bus address not updating in real-time on the Live Tracking Page?</strong></summary><blockquote id="799ef4ca-aa3d-437c-a299-9f74f98ff5d5" class="">The address is inherited from the previous page; it updates only when you revisit the page. All data refreshes at a 30-second interval.</blockquote></details></li></ul><ul id="11f9826b-ec11-49fe-92d9-9704d73aa32e" class="toggle"><li><details close=""><summary><strong>Why does the map sometimes show a blurry or grey screen?</strong></summary><blockquote id="be47ea4b-264d-4eff-8c3f-c85144d423ba" class="">This could be due to slow internet speed; a stable connection is needed for optimal map display.</blockquote><p id="e3895ceb-ffa7-4bb1-b87a-2dec31d9b536" class="">
-</p></details></li></ul><ul id="3397c9d8-fab4-4e40-8e06-f24b8616b1ca" class="toggle"><li><details close=""><summary><strong>Why is the Arrival/Departure time available only for certain towns on the Itinerary?</strong></summary><blockquote id="63f54ad4-892f-476f-a447-e7119a60ccac" class="">The availability of these times depends on whether the API response includes these fields for specific towns.</blockquote><p id="a1412f4c-fce9-4bbb-b9d9-88e7fd4e1c4a" class="">
-</p></details></li></ul><ul id="0dd8500d-c32d-40c2-b438-451bad29b115" class="toggle"><li><details close=""><summary><strong>Why is the bus on the map not moving sometimes?</strong></summary><blockquote id="692a94a5-3191-4c17-85c2-cdc7c8201e92" class="">The bus movement relies on the Traccar live location trail. If the trail is not available, the bus will be unable to move on the map. In simple terms, we are not getting the updates from the Traccar.</blockquote><p id="e54f56f5-a140-483e-80e3-a600024182b8" class="">
-</p></details></li></ul><ul id="33a7deba-4d9a-4259-9381-4ae711347067" class="toggle"><li><details close=""><summary><strong>Why does the &quot;Is Trip ka Hisaab&quot; button sometimes show an error toast?</strong></summary><blockquote id="b71a280c-c01e-413d-a102-97f46adae4bd" class="">This occurs when there is no linked trip ID for the bus. Ensure a linked trip ID for accurate results.</blockquote><p id="331cf048-0993-465d-a173-0aae850e6224" class="">
-</p></details></li></ul><ul id="d719bfa1-96d3-40e8-99e1-0f233ba722de" class="toggle"><li><details close=""><summary><strong>How can I troubleshoot if the historical route playback doesn&#x27;t start when I click &quot;Play&quot;?</strong></summary><blockquote id="02d554a6-e1c8-4d8a-afd5-dd849df3df79" class="">Verify your internet connection and try reloading the page. If the issue persists, <strong>⸮</strong></blockquote><p id="d903296a-5358-449d-af92-d8354cc0cba7" class="">
-</p><p id="2943721c-5938-4675-a07a-ab80bde5c88d" class="">
-</p></details></li></ul><h1 id="4bb4fbc4-e8ae-4ec2-8def-8fde3ed7d0bc" class="">Tutorials</h1><ul id="435e3103-bbdb-44a6-9aa9-ff09606be015" class="toggle"><li><details close=""><summary><strong>How to view live location of a particular “</strong><strong><mark class="highlight-orange">Bus</mark></strong><strong>”?</strong></summary><ul id="f6ff158d-d577-4c9d-9d04-f37defb7db1c" class="bulleted-list"><li style="list-style-type:disc">To open GPS Tracking Page, click “Saari Busse Dekhe” button in GPS Tracking Card or by tapping anywhere on the card.<figure id="f6522a34-afea-4533-b9d2-eb9dba1951d9" class="image"><a href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Untitled.png"><img style="width:336px" src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Untitled.png"/></a></figure></li></ul><ul id="8aff0c1f-a7ad-43a3-8f6a-d95fc5dc0c9f" class="bulleted-list"><li style="list-style-type:disc">Navigate to the GPS Tracking Page and select the bus card for which you want to view the live GPS tracking.</li></ul><div id="5e999b16-88dd-431b-a288-ce143f2ceecd" class="column-list"><div id="17275f4f-19e2-410e-9e58-be285cc92c28" style="width:100%" class="column"><figure id="cdd6f57e-3602-404f-949b-64dce2700759" class="image"><a href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/WhatsApp_Image_2024-02-19_at_12.52.06_4fbb9be6.jpg"><img style="width:240px" src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/WhatsApp_Image_2024-02-19_at_12.52.06_4fbb9be6.jpg"/></a></figure><p id="fc56cee5-718f-445b-8d49-f9f00aab6295" class="">
-</p></div><div id="d19e5617-fa60-431e-b00c-5b71a5c20033" style="width:100%" class="column"><p id="96a3c96b-365e-4538-91d1-574372d8e7d6" class="">
-</p><figure id="d41bd260-dda7-4f88-8b7b-65682da64521" class="image"><a href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160559%201.jpg"><img style="width:240px" src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160559%201.jpg"/></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4461b8ae-83ac-4ad1-bec8-82062ec5871d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>To view the historical playback route of this bus</strong></div></figure><ul id="f653b0d8-6ac0-4efd-88be-7651c0ffacf5" class="bulleted-list"><li style="list-style-type:disc">Click on “<strong>Play Journey</strong>” to view historical playback</li></ul><div id="bfd5f6cc-a3b9-4b72-b324-cde2c110a8a1" class="column-list"><div id="7f436c15-ae91-41aa-a6f1-bd7a31451cff" style="width:100%" class="column"><figure id="57df31b9-373a-4504-a80f-d32362669cb4" class="image"><a href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160612.jpg"><img style="width:288px" src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160612.jpg"/></a></figure><p id="e40d7973-c28e-4899-af48-a17f4c087a23" class="">
-</p></div><div id="f15d3392-b882-4acf-b2e5-a138af6f37fa" style="width:100%" class="column"><p id="6a1e95f9-da23-40de-9ee7-62a216fe4bdc" class="">
-</p><figure id="0a0cc9cc-0109-4de3-aeca-44c4c81edd7e" class="image"><a href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Untitled.jpeg"><img style="width:240px" src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Untitled.jpeg"/></a></figure></div></div></details></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>GPS Tracking</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        margin: 30;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li > ol:first-child,
+      li > ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        padding-inline-start: 0;
+      }
+
+      ul.to-do-list > li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle > li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul > li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol > li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol > li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle > li > details {
+        padding-left: 1.7em;
+      }
+
+      .toggle > li > details > summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      .page-description {
+        margin-bottom: 2em;
+      }
+
+      .simple-table {
+        margin-top: 1em;
+        font-size: 0.875rem;
+        empty-cells: show;
+      }
+      .simple-table td {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table th {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table-header-color {
+        background: rgb(247, 246, 243);
+        color: black;
+      }
+      .simple-table-header {
+        font-weight: 500;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        max-height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p > .user {
+        opacity: 0.5;
+      }
+
+      td > .user,
+      td > time {
+        white-space: nowrap;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif,
+          "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+      .code {
+        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono",
+          "Liberation Mono", Courier, monospace;
+      }
+      .serif {
+        font-family: Lyon-Text, Georgia, ui-serif, serif;
+      }
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+      .pdf .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif,
+          "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji",
+          "Noto Sans CJK JP";
+      }
+      .pdf:lang(zh-CN) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif,
+          "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji",
+          "Noto Sans CJK SC";
+      }
+      .pdf:lang(zh-TW) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif,
+          "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji",
+          "Noto Sans CJK TC";
+      }
+      .pdf:lang(ko-KR) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif,
+          "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji",
+          "Noto Sans CJK KR";
+      }
+      .pdf .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
+          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
+          "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK JP";
+      }
+      .pdf:lang(zh-CN) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK SC";
+      }
+      .pdf:lang(zh-TW) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK TC";
+      }
+      .pdf:lang(ko-KR) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
+          "Noto Color Emoji", "Noto Serif CJK KR";
+      }
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
+      }
+      .pdf:lang(zh-CN) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
+      }
+      .pdf:lang(zh-TW) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
+      }
+      .pdf:lang(ko-KR) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
+          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
+      }
+      .highlight-default {
+        color: rgba(55, 53, 47, 1);
+      }
+      .highlight-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .highlight-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .highlight-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .highlight-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .highlight-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .highlight-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .highlight-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .highlight-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .highlight-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .highlight-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .highlight-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .highlight-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .highlight-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .highlight-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .highlight-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .highlight-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .highlight-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .highlight-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+      .block-color-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+      .block-color-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+      .block-color-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+      .block-color-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+      .block-color-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+      .block-color-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+      .block-color-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+      .block-color-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+      .block-color-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+      .block-color-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+      .block-color-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+      .block-color-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+      .block-color-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+      .block-color-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+      .block-color-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+      .block-color-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+      .block-color-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+      .select-value-color-uiBlue {
+        background-color: rgba(35, 131, 226, 0.07);
+      }
+      .select-value-color-pink {
+        background-color: rgba(245, 224, 233, 1);
+      }
+      .select-value-color-purple {
+        background-color: rgba(232, 222, 238, 1);
+      }
+      .select-value-color-green {
+        background-color: rgba(219, 237, 219, 1);
+      }
+      .select-value-color-gray {
+        background-color: rgba(227, 226, 224, 1);
+      }
+      .select-value-color-translucentGray {
+        background-color: rgba(255, 255, 255, 0.0375);
+      }
+      .select-value-color-orange {
+        background-color: rgba(250, 222, 201, 1);
+      }
+      .select-value-color-brown {
+        background-color: rgba(238, 224, 218, 1);
+      }
+      .select-value-color-red {
+        background-color: rgba(255, 226, 221, 1);
+      }
+      .select-value-color-yellow {
+        background-color: rgba(253, 236, 200, 1);
+      }
+      .select-value-color-blue {
+        background-color: rgba(211, 229, 239, 1);
+      }
+      .select-value-color-pageGlass {
+        background-color: undefined;
+      }
+      .select-value-color-washGlass {
+        background-color: undefined;
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+
+      .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="2baa871c-7ba4-4a52-81a6-6ba613f22375" class="page sans">
+      <header>
+        <img
+          class="page-cover-image"
+          src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160354%201.jpg"
+          style="object-position: center 12.419999999999998%"
+        />
+        <div class="page-header-icon page-header-icon-with-cover">
+          <span class="icon">🖲️</span>
+        </div>
+        <h1 class="page-title">GPS Tracking</h1>
+        <p class="page-description"></p>
+        <table class="properties">
+          <tbody>
+            <tr class="property-row property-row-person">
+              <th>
+                <span class="icon property-icon"
+                  ><svg
+                    role="graphics-symbol"
+                    viewBox="0 0 16 16"
+                    style="
+                      width: 14px;
+                      height: 14px;
+                      display: block;
+                      fill: rgba(55, 53, 47, 0.45);
+                      flex-shrink: 0;
+                    "
+                    class="typesPerson"
+                  >
+                    <path
+                      d="M10.9536 7.90088C12.217 7.90088 13.2559 6.79468 13.2559 5.38525C13.2559 4.01514 12.2114 2.92017 10.9536 2.92017C9.70142 2.92017 8.65137 4.02637 8.65698 5.39087C8.6626 6.79468 9.69019 7.90088 10.9536 7.90088ZM4.4231 8.03003C5.52368 8.03003 6.42212 7.05859 6.42212 5.83447C6.42212 4.63843 5.51245 3.68945 4.4231 3.68945C3.33374 3.68945 2.41846 4.64966 2.41846 5.84009C2.42407 7.05859 3.32251 8.03003 4.4231 8.03003ZM1.37964 13.168H5.49561C4.87231 12.292 5.43384 10.6074 6.78711 9.51807C6.18628 9.14746 5.37769 8.87231 4.4231 8.87231C1.95239 8.87231 0.262207 10.6917 0.262207 12.1628C0.262207 12.7974 0.548584 13.168 1.37964 13.168ZM7.50024 13.168H14.407C15.4009 13.168 15.7322 12.8423 15.7322 12.2864C15.7322 10.8489 13.8679 8.88354 10.9536 8.88354C8.04492 8.88354 6.17505 10.8489 6.17505 12.2864C6.17505 12.8423 6.50635 13.168 7.50024 13.168Z"
+                    ></path></svg></span
+                >Owner
+              </th>
+              <td>
+                <span class="user"
+                  ><img
+                    src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Dot.jpg"
+                    class="icon user-icon"
+                  />You</span
+                >
+              </td>
+            </tr>
+            <tr class="property-row property-row-multi_select">
+              <th>
+                <span class="icon property-icon"
+                  ><svg
+                    role="graphics-symbol"
+                    viewBox="0 0 16 16"
+                    style="
+                      width: 14px;
+                      height: 14px;
+                      display: block;
+                      fill: rgba(55, 53, 47, 0.45);
+                      flex-shrink: 0;
+                    "
+                    class="typesMultipleSelect"
+                  >
+                    <path
+                      d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"
+                    ></path></svg></span
+                >Tags
+              </th>
+              <td>
+                <span class="selected-value select-value-color-purple"
+                  >Completed</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </header>
+      <div class="page-body">
+        <nav
+          id="f93d8199-9dde-4e6e-9d3e-84aa3b903f62"
+          class="block-color-gray table_of_contents"
+        >
+          <div class="table_of_contents-item table_of_contents-indent-0">
+            <a
+              class="table_of_contents-link"
+              href="#5c8024ea-2626-4d2b-99e4-549d32f49571"
+              ><strong><strong>Overview</strong></strong></a
+            >
+          </div>
+          <div class="table_of_contents-item table_of_contents-indent-1">
+            <a
+              class="table_of_contents-link"
+              href="#cda15919-b467-4c45-99c8-c0467207cd38"
+              >Widgets →</a
+            >
+          </div>
+          <div class="table_of_contents-item table_of_contents-indent-2">
+            <a
+              class="table_of_contents-link"
+              href="#cabf4e08-a2de-4d0a-886e-7677f0927783"
+              >Home GPS Card</a
+            >
+          </div>
+          <div class="table_of_contents-item table_of_contents-indent-0">
+            <a
+              class="table_of_contents-link"
+              href="#91ad4d2f-72a3-4611-b516-636495b6f4eb"
+              >Pages →</a
+            >
+          </div>
+          <div class="table_of_contents-item table_of_contents-indent-0">
+            <a
+              class="table_of_contents-link"
+              href="#ad3b0bb8-7444-4c80-a6e5-70d38810bb0e"
+              >FAQs</a
+            >
+          </div>
+          <div class="table_of_contents-item table_of_contents-indent-0">
+            <a
+              class="table_of_contents-link"
+              href="#4bb4fbc4-e8ae-4ec2-8def-8fde3ed7d0bc"
+              >Tutorials</a
+            >
+          </div>
+        </nav>
+        <h1 id="5c8024ea-2626-4d2b-99e4-549d32f49571" class="">
+          <strong><strong>Overview</strong></strong>
+        </h1>
+        <p id="dc060703-d007-4a83-88f3-5ea1f95ec924" class="">
+          Effortlessly track your buses in real-time with our “GPS feature”.
+          Monitor live locations, trip details, and historical routes, ensuring
+          efficient operations for bus owners.
+        </p>
+        <h2 id="cda15919-b467-4c45-99c8-c0467207cd38" class="">Widgets →</h2>
+        <figure
+          id="e4dea0fa-693a-4c60-bb71-37200fbd5766"
+          class="image"
+          style="text-align: left"
+        >
+          <a
+            href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160315.jpg"
+            ><img
+              style="width: 336px"
+              src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160315.jpg"
+          /></a>
+        </figure>
+        <details close="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.25em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            Home GPS Card
+          </summary>
+          <div class="indented">
+            <p id="0fc4c945-e13c-43d9-ba03-969d44133047" class="">
+              The Home GPS Tracking Card shows bus owners the status of their
+              buses at a glance. It displays information like bus number,
+              whether it&#x27;s on or off, the route status, and the distance
+              traveled today, helping owners keep track easily.
+            </p>
+            <ul id="ee9d839b-aea1-48e3-aded-e7d6ca752a83" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Bus Number:</strong> Tells you which bus it is, like its
+                name.
+              </li>
+            </ul>
+            <ul id="27779d03-21e8-49d2-a0fa-d5ee846ac21a" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Ignition Status:</strong> Whether the bus is on or off.
+              </li>
+            </ul>
+            <ul id="9973b9a2-acff-41dd-a17b-679a2d126b72" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Track Status:</strong> Shows if the bus is following its
+                route or not.
+              </li>
+            </ul>
+            <ul id="8725c59f-69b9-4140-b9d8-1f8d35451893" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Speed &amp; Distance Today:</strong> Tells how fast the
+                bus is going and how far it traveled today.
+              </li>
+            </ul>
+            <ul id="b791fd04-8529-463e-85ad-526d70e1465a" class="bulleted-list">
+              <li style="list-style-type: disc">
+                <strong>Location:</strong> Where the bus is right now, like its
+                address.
+              </li>
+            </ul>
+          </div>
+        </details>
+        <details close="">
+          <summary
+            style="
+              font-weight: 600;
+              font-size: 1.875em;
+              line-height: 1.3;
+              margin: 0;
+            "
+          >
+            Pages →
+          </summary>
+          <div class="indented">
+            <ul id="4b702415-3dc3-432f-8d22-94e21eb9f154" class="toggle">
+              <li>
+                <details close="">
+                  <summary><strong>GPS Tracking List Page</strong></summary>
+                  <p id="7ca11f27-2dbb-40a5-a0d6-74d649291eda" class=""></p>
+                  <figure
+                    id="54d04b97-cd33-493b-9b4f-3f72f217515c"
+                    class="image"
+                  >
+                    <a
+                      href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160354.jpg"
+                      ><img
+                        style="width: 288px"
+                        src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160354.jpg"
+                    /></a>
+                  </figure>
+                  <p id="a901294f-56e7-419f-8c43-f9955c9ea840" class=""></p>
+                  <figure
+                    class="block-color-gray_background callout"
+                    style="white-space: pre-wrap; display: flex"
+                    id="a8fc640c-5369-4591-9a33-5a1930d19d5a"
+                  >
+                    <div style="font-size: 1.5em">
+                      <span class="icon">📍</span>
+                    </div>
+                    <div style="width: 100%">
+                      The GPS Tracking List Page is like a control center for
+                      bus operators. It shows a map with all buses, each having
+                      a card for details.
+                    </div>
+                  </figure>
+                  <p id="d6f2f644-298d-43bd-822d-d4c61ff2dc47" class=""></p>
+                  <h2 id="be3eb1ff-5b9b-47c2-91de-8ea509148f22" class="">
+                    Google Map →
+                  </h2>
+                  <ul
+                    id="af1fc5c5-66cd-4ea9-9d86-65c379d71063"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Markers: </strong>Shows the various marker on the
+                      map, refers to the buses linked to the user logged-in.
+                    </li>
+                  </ul>
+                  <ul
+                    id="a0d101fb-0b68-4b2e-b85f-203b6904cf85"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Info-window: </strong>In this we are able to see
+                      the Bus-Number when we click on the marker, to verify that
+                      which bus is this.
+                    </li>
+                  </ul>
+                  <p id="e7c716e6-b415-4abc-84cc-c9466c439f63" class=""></p>
+                  <h2 id="303c9d31-040f-4190-a812-68a0f3b5a7bc" class="">
+                    Bus Card →
+                  </h2>
+                  <ul
+                    id="383708f2-5568-4863-862d-78f0421760e9"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Bus Info:</strong> Displays Bus Number and icons.
+                    </li>
+                  </ul>
+                  <ul
+                    id="2759bbf8-6d58-4342-9f7e-460d19179f09"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Status Indicators:</strong> Shows if the bus is
+                      moving on track and its ignition status.
+                    </li>
+                  </ul>
+                  <ul
+                    id="344c8941-7cc5-48f5-b7a6-caaf9cb83257"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Trip Stats:</strong> Includes total distance,
+                      stops, and current speed.
+                    </li>
+                  </ul>
+                  <ul
+                    id="7791a57b-5bfb-4c24-bba1-4c9895803a21"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Geo: </strong>Shows the bus live location in
+                      address format.
+                    </li>
+                  </ul>
+                  <p id="afdbe804-267c-48e0-bcaf-1bb9afdf29ea" class=""></p>
+                  <h2 id="2b9c2a96-f7c8-44c6-959f-91dcd21282b9" class="">
+                    Additional Features →
+                  </h2>
+                  <ul
+                    id="8984c0d6-9599-403a-8838-4e152ed69a9b"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Last Sync Time:</strong> Tells when the bus
+                      location was last updated.
+                    </li>
+                  </ul>
+                  <ul
+                    id="4726a09f-a291-4d81-bc39-ca754e7d4912"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Play Journey: </strong>A simple way to see the
+                      historical route of the specific bus.
+                    </li>
+                  </ul>
+                  <ul
+                    id="535de2f0-7a61-4529-b53e-d7bb6b078a37"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Share Live Location: </strong>Shares the live
+                      location of the bus via link.
+                    </li>
+                  </ul>
+                  <p id="c2bcd831-429d-443b-a6c8-5ca35a152663" class=""></p>
+                  <figure
+                    class="block-color-gray_background callout"
+                    style="white-space: pre-wrap; display: flex"
+                    id="e2230180-da92-4aba-9ff2-4fa6dd980e68"
+                  >
+                    <div style="font-size: 1.5em">
+                      <span class="icon">😵‍💫</span>
+                    </div>
+                    <div style="width: 100%">
+                      <strong>Troubleshooting: </strong>• If no buses are shown,
+                      it might mean none are linked or have no device ID.
+                    </div>
+                  </figure>
+                </details>
+              </li>
+            </ul>
+            <ul id="f8623b80-1526-4169-8765-ada05bdd64ab" class="toggle">
+              <li>
+                <details close="">
+                  <summary><strong>GPS Live Tracking Page</strong></summary>
+                  <p id="b6fd4552-c135-4114-a397-1bc0ea214137" class=""></p>
+                  <figure
+                    id="34742c6f-7687-4601-b5fe-f99aac47a30b"
+                    class="image"
+                  >
+                    <a
+                      href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160559.jpg"
+                      ><img
+                        style="width: 240px"
+                        src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160559.jpg"
+                    /></a>
+                  </figure>
+                  <p id="45fd7cc1-691b-46bf-b37c-5b26be9472e1" class=""></p>
+                  <figure
+                    class="block-color-gray_background callout"
+                    style="white-space: pre-wrap; display: flex"
+                    id="6ddcf7b1-fc6a-4244-8732-e9035da635ac"
+                  >
+                    <div style="font-size: 1.5em">
+                      <span class="icon">♥️</span>
+                    </div>
+                    <div style="width: 100%">
+                      The Live Tracking Page is the key-page of real-time bus
+                      monitoring. It&#x27;s divided into three key sections
+                      providing comprehensive information.
+                    </div>
+                  </figure>
+                  <h2 id="839df172-87c0-477c-b30e-9379439e916a" class="">
+                    Profiling Stats Widget →
+                  </h2>
+                  <ul
+                    id="a9cab610-1e1d-4f8a-b9a0-47ce59055ed1"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Live Location:</strong> The current address of the
+                      bus.
+                    </li>
+                  </ul>
+                  <ul
+                    id="9a3cf9f1-3446-4263-b67f-abf84b747830"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Speed:</strong> The real-time speed of the bus.
+                    </li>
+                  </ul>
+                  <ul
+                    id="5513242f-4dc5-4f4b-b9f0-eb49ff9ad13e"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Ignition Status:</strong> Indicates whether the
+                      bus is on or off.
+                    </li>
+                  </ul>
+                  <ul
+                    id="75c3ef35-8f43-449b-90da-cb1a7c36c3d3"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Last GPS Sync Time:</strong> Displays the time of
+                      the last location update.
+                    </li>
+                  </ul>
+                  <ul
+                    id="fc832636-5556-4b92-9d31-661205e3fd65"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Total Distance Today:</strong> Shows the distance
+                      covered by the bus today.
+                    </li>
+                  </ul>
+                  <h2 id="971d5550-edee-40e6-a365-484671b8faeb" class="">
+                    Google Map →
+                  </h2>
+                  <ul
+                    id="f2d76e05-2e24-41dc-aacb-8f94c88c416c"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Real-time Map:</strong> Displays the live location
+                      of the bus.
+                    </li>
+                  </ul>
+                  <ul
+                    id="1b5f1159-a869-4c1d-be08-1afbe0979bf6"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Polyline Route:</strong> Represents the route the
+                      bus is supposed to follow.
+                    </li>
+                  </ul>
+                  <ul
+                    id="e9074722-fe15-4b41-856e-74b05ccf1c54"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Stoppage Markers:</strong> Highlight key stoppage
+                      points on the map.
+                    </li>
+                  </ul>
+                  <ul
+                    id="ae5508c2-d6dd-42b5-bbbd-d04938b215e2"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Marker Info Window:</strong> Provides details on
+                      clicking a stoppage marker - Stoppage Name, Arrival Time,
+                      Departure Time, Profit, OnBoarded Passengers, and
+                      DeBoarded Passengers.
+                    </li>
+                  </ul>
+                  <p id="0ca56606-6da9-4e28-b540-4650af5706b6" class=""></p>
+                  <figure
+                    class="block-color-gray_background callout"
+                    style="white-space: pre-wrap; display: flex"
+                    id="fa900d8f-13cd-44a6-9118-0321a84cb3cc"
+                  >
+                    <div style="font-size: 1.5em">
+                      <span class="icon">📂</span>
+                    </div>
+                    <div style="width: 100%">
+                      <strong>Dynamic Update:</strong> All information on this
+                      page is continuously updated for the ongoing trip.
+                    </div>
+                  </figure>
+                  <p id="fae00ae0-a9f6-4e46-88d1-2c45403f080f" class=""></p>
+                  <h2 id="ddd19beb-9172-4d20-842e-ab1d16516195" class="">
+                    Itinerary Bottom Sheet →
+                  </h2>
+                  <blockquote
+                    id="a13c29ab-e34a-4956-a274-13af9130700a"
+                    class=""
+                  >
+                    This bottom sheet encapsulates essential real-time and
+                    historical trip details, providing operators with a
+                    comprehensive overview of the ongoing journey.
+                  </blockquote>
+                  <p id="0d04e033-da96-48df-9204-7edf68d353b6" class=""></p>
+                  <ol
+                    type="1"
+                    id="30e25ff1-a413-4286-ba50-e9d8a62007a5"
+                    class="numbered-list"
+                    start="1"
+                  >
+                    <li>
+                      <strong>Trip Details (On-Going):</strong>
+                      <ul
+                        id="81e6a0bd-6997-4bc5-8f6e-d0c38975d3e8"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Source Town:</strong> Where the trip started.
+                        </li>
+                      </ul>
+                      <ul
+                        id="549fc45f-98b9-425d-a1c5-97f1683a93c8"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Start Time:</strong> The time the bus embarked
+                          on the journey.
+                        </li>
+                      </ul>
+                      <ul
+                        id="df3d8be9-5aee-415d-b0e1-7d99a6136058"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Destination Town:</strong> The planned final
+                          destination.
+                        </li>
+                      </ul>
+                      <ul
+                        id="4f685981-8a31-4683-81ad-ce019c005c04"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Destination Time (if trip ended):</strong> The
+                          expected time of reaching the destination if the trip
+                          has concluded.
+                        </li>
+                      </ul>
+                    </li>
+                  </ol>
+                  <ol
+                    type="1"
+                    id="e06510d7-4d61-4996-b423-bf0b49a325e8"
+                    class="numbered-list"
+                    start="2"
+                  >
+                    <li>
+                      <strong>Small Hisaab Widget:</strong>
+                      <ul
+                        id="fc801fa0-86fe-4466-9c02-e1c0d28e0c88"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Trip Earnings Till Now:</strong> The total
+                          earnings accumulated during the current trip.
+                        </li>
+                      </ul>
+                      <ul
+                        id="355686ae-869c-4eea-b81f-1c28f6534c88"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Boarded Passengers:</strong> The count of
+                          passengers who have boarded the bus.
+                        </li>
+                      </ul>
+                      <ul
+                        id="8f0f4642-6695-4cf9-ae67-8298c74cefcc"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Deboarded Passengers:</strong> The count of
+                          passengers who have exited the bus.
+                        </li>
+                      </ul>
+                      <ul
+                        id="25157d89-6fc6-4cf1-a257-3cb220d465f9"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Passengers in Bus:</strong> The current count
+                          of passengers still on the bus.
+                        </li>
+                      </ul>
+                    </li>
+                  </ol>
+                  <ol
+                    type="1"
+                    id="500468d3-ae73-4a19-8901-024db3d46193"
+                    class="numbered-list"
+                    start="3"
+                  >
+                    <li>
+                      <strong>Trip HISAAB Button:</strong>
+                      <ul
+                        id="c963867c-0641-41fd-82f2-39fa88b6f6e5"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          A quick link to a detailed trip earnings page for more
+                          comprehensive financial insights.
+                        </li>
+                      </ul>
+                    </li>
+                  </ol>
+                  <ol
+                    type="1"
+                    id="65d3008b-7d95-4396-8cac-ce55c9f7cfb7"
+                    class="numbered-list"
+                    start="4"
+                  >
+                    <li>
+                      <strong>Itinerary:</strong>
+                      <ul
+                        id="262bf5fc-cbd3-438d-baf2-fb7758a30061"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Town Name:</strong> The name of each town in
+                          the itinerary.
+                        </li>
+                      </ul>
+                      <ul
+                        id="fa266ad7-9683-4958-a845-25f2ea65a74b"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Arrival Time &amp; Departure Time:</strong>
+                          Indicates when the bus arrived and departed from each
+                          town.
+                        </li>
+                      </ul>
+                      <ul
+                        id="51a5a345-4425-46db-a777-0529f808fb77"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Profit:</strong> The financial gain at each
+                          town.
+                        </li>
+                      </ul>
+                      <ul
+                        id="f32784ea-0926-4ce3-aaca-13ce046d8edd"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Luggage:</strong> The amount of luggage loaded
+                          or unloaded.
+                        </li>
+                      </ul>
+                      <ul
+                        id="6bb4171a-1339-48e8-af3f-08dfccdaa3f5"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Passenger Boarded:</strong> The count of
+                          passengers getting on at each town.
+                        </li>
+                      </ul>
+                      <ul
+                        id="fbf44896-61cb-405f-ba22-ac178332a234"
+                        class="bulleted-list"
+                      >
+                        <li style="list-style-type: disc">
+                          <strong>Passenger Deboarded:</strong> The count of
+                          passengers disembarking at each town.
+                        </li>
+                      </ul>
+                    </li>
+                  </ol>
+                  <h2 id="901eca53-f025-4a40-b8b0-89ab934a8a9b" class="">
+                    <strong>No Route Scenario →</strong>
+                  </h2>
+                  <ul
+                    id="8ab819d4-6c63-4fde-8ef0-ea620b1dbc34"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      If there&#x27;s no route linked to the bus, the itinerary
+                      section is not displayed.
+                    </li>
+                  </ul>
+                  <p id="2497492e-2a08-49d1-be5e-8fee5b7397fa" class=""></p>
+                  <figure
+                    class="block-color-gray_background callout"
+                    style="white-space: pre-wrap; display: flex"
+                    id="68e1b008-b7ff-4729-bb7d-2718eb879644"
+                  >
+                    <div style="font-size: 1.5em">
+                      <span class="icon">🦾</span>
+                    </div>
+                    <div style="width: 100%">
+                      This page provides a real-time snapshot of the bus&#x27;s
+                      current status, route, and trip details, facilitating
+                      effective monitoring for bus operators.
+                    </div>
+                  </figure>
+                </details>
+              </li>
+            </ul>
+            <ul id="fc1d1a1d-2033-4acc-83e8-2c016c466291" class="toggle">
+              <li>
+                <details close="">
+                  <summary><strong>History Replay Page</strong></summary>
+                  <p id="ef62157f-fb8b-44f6-b04f-4e92b51b5752" class=""></p>
+                  <figure
+                    id="b5b39282-3643-496b-a0f5-2b60c6eb9abb"
+                    class="image"
+                  >
+                    <a
+                      href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160641.jpg"
+                      ><img
+                        style="width: 240px"
+                        src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160641.jpg"
+                    /></a>
+                  </figure>
+                  <p id="e08f1dbd-d232-4a76-802b-f4bf2772b388" class=""></p>
+                  <figure
+                    class="block-color-gray_background callout"
+                    style="white-space: pre-wrap; display: flex"
+                    id="61970725-b87f-431f-a988-55b75ac6a593"
+                  >
+                    <div style="font-size: 1.5em">
+                      <span class="icon">📜</span>
+                    </div>
+                    <div style="width: 100%">
+                      The History Replay Page is a simple way for reviewing past
+                      bus journeys. It offers a detailed insight into historical
+                      routes and trip statistics.
+                    </div>
+                  </figure>
+                  <p id="de6aec41-87ea-4ec2-ac7c-925a75c8f1c3" class=""></p>
+                  <h2 id="60e10755-16bf-4e72-94c3-4f263fa166e3" class="">
+                    Trip Stats →
+                  </h2>
+                  <ul
+                    id="09247e52-ed65-495c-8a3d-e694d84fe137"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Total Moved Km and Running Time:</strong>
+                      Summarizes the distance covered and the total running time
+                      for the selected date.
+                    </li>
+                  </ul>
+                  <ul
+                    id="0c973e8d-89eb-45e1-84a9-c70de4af9aec"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Total Stops and Stoppage Time:</strong> Provides
+                      the total number of stops made and the cumulative stoppage
+                      time.
+                    </li>
+                  </ul>
+                  <p id="a34adf5e-0511-458d-8a4e-8c115b8a2c7d" class=""></p>
+                  <h2 id="7c78f41b-a42a-4375-9cfb-bb8197e77fea" class="">
+                    Google Map →
+                  </h2>
+                  <ul
+                    id="1037fd41-5e80-4057-8dd9-835b5e4b01c8"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Historical Route Polyline:</strong> Displays the
+                      route taken by the bus on the selected date.
+                    </li>
+                  </ul>
+                  <figure
+                    class="block-color-gray_background callout"
+                    style="white-space: pre-wrap; display: flex"
+                    id="06a60de5-d4e1-4798-84eb-1f9234cd8b7d"
+                  >
+                    <div style="font-size: 1.5em">
+                      <span class="icon">🥸</span>
+                    </div>
+                    <div style="width: 100%">
+                      <strong>Default: </strong>It shows the last 24 hours trip
+                      information.
+                    </div>
+                  </figure>
+                  <p id="82b82efe-9156-473f-9500-7eda64d95103" class=""></p>
+                  <h2 id="d1469f03-430d-4faa-b194-2adc9c69feae" class="">
+                    <strong>Slider and Play Pause Button →</strong>
+                  </h2>
+                  <ul
+                    id="220a37ee-3fb2-4471-aa1c-3026be599567"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Slider:</strong> Allows users to manually navigate
+                      through the historical route.
+                    </li>
+                  </ul>
+                  <ul
+                    id="dcc0482d-34e6-48d3-bd63-dd787c970740"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Play-Pause: </strong>Allows user to play and pause
+                      the route, followed by the bus on the historical dates.
+                    </li>
+                  </ul>
+                  <ul
+                    id="f20aaf31-4dc3-4924-a32f-f038107c5cf5"
+                    class="bulleted-list"
+                  >
+                    <li style="list-style-type: disc">
+                      <strong>Playback Speed</strong>: Allows user to modify the
+                      speed of marker movement to play the route using
+                      animation.
+                    </li>
+                  </ul>
+                  <p id="e32bba0c-5976-4200-9c8f-ad175cceccac" class=""></p>
+                  <h2 id="a3727c19-d6cf-4a00-95f5-d36303bbb3fc" class="">
+                    No History Scenario →
+                  </h2>
+                  <blockquote
+                    id="06dd33c2-f13b-4cf8-82cc-6fe0074bb411"
+                    class=""
+                  >
+                    Informing the user that no historical playback data is
+                    available for the selected date.
+                  </blockquote>
+                </details>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <h1 id="ad3b0bb8-7444-4c80-a6e5-70d38810bb0e" class="">FAQs</h1>
+        <ul id="07adaf02-f384-4661-a4d4-f61601ca36cb" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >Why is the ignition status constantly shimmering on the Home
+                  GPS Card?</strong
+                >
+              </summary>
+              <figure
+                id="b70adb86-63cf-42f0-b2b3-e54e44f09f11"
+                class="image"
+                style="text-align: left"
+              >
+                <a
+                  href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160410.jpg"
+                  ><img
+                    style="width: 384px"
+                    src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160410.jpg"
+                /></a>
+              </figure>
+              <blockquote id="e1e2bdc4-1ffe-4d7b-94c4-eff3e6555763" class="">
+                The shimmer indicates that we are currently unable to retrieve
+                the ignition status from the server. Once we receive the data,
+                the shimmer will be replaced with the actual status.
+              </blockquote>
+            </details>
+          </li>
+        </ul>
+        <ul id="2df5b10d-920f-4c2b-bb48-f27556c7ad76" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >I don&#x27;t see any buses on the Home GPS Card. What could
+                  be the issue?</strong
+                >
+              </summary>
+              <blockquote id="c5ecf2c6-375e-4fae-8dcf-f186d17e7916" class="">
+                This might be due to either no buses being linked to the
+                logged-in user or the buses not having a device ID assigned.
+                Please ensure your buses are correctly linked.
+              </blockquote>
+            </details>
+          </li>
+        </ul>
+        <ul id="1e72419a-e976-46c6-b81c-76f9594ad229" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >What does it mean when the Home GPS Card displays
+                  &quot;Stopped since x mins&quot; instead of the bus
+                  speed?</strong
+                >
+              </summary>
+              <blockquote id="f0cc728a-9b97-42bc-b0a7-dfceb1e95484" class="">
+                This indicates that the bus is currently not moving. The timer
+                shows the duration since the bus came to a halt.
+              </blockquote>
+            </details>
+          </li>
+        </ul>
+        <ul id="96f656c9-0c9b-4a21-aaa6-27b83120b5b8" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >The location address on the Home GPS Card seems outdated. How
+                  often is it updated?</strong
+                >
+              </summary>
+              <blockquote id="fbc17195-5386-4dff-aca9-cf8a41ab05b4" class="">
+                The address in this widget is only get updated when we came to
+                this page, or we refresh the page using the refresh indicator.
+              </blockquote>
+            </details>
+          </li>
+        </ul>
+        <ul id="38a3594e-9568-491e-ab3c-393a848265f7" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >Why do I see a &quot;No Data Found&quot; widget on the GPS
+                  Tracking List Page with no buses displayed?</strong
+                >
+              </summary>
+              <blockquote id="badbf330-3e14-4b6d-917e-4602e4e26567" class="">
+                This might be due to either no buses being linked to the
+                logged-in user or the buses not having a device ID assigned.
+                Please ensure your buses are correctly linked.
+              </blockquote>
+            </details>
+          </li>
+        </ul>
+        <ul id="784bb631-3f53-4fa2-882f-ac875aaeca00" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >I don&#x27;t see any buses on the Home GPS Card. What could
+                  be the issue?</strong
+                >
+              </summary>
+              <blockquote id="36a2ab4b-c0e9-4414-815f-d9e5bbb08e62" class="">
+                The widget appears when no buses are linked to your account or
+                if the buses lack a device ID. Ensure that your buses are
+                correctly linked and have device IDs assigned
+              </blockquote>
+            </details>
+          </li>
+        </ul>
+        <ul id="63de007b-83b5-42ad-a997-c6066f191f84" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >What does the &quot;Play Journey&quot; button do on the GPS
+                  bus card?</strong
+                >
+              </summary>
+              <blockquote id="f50f3998-453c-45e8-81d7-47d7525a58e3" class="">
+                Clicking the &quot;Play Journey&quot; button navigates you to
+                the &quot;History Replay Page,&quot; where you can visually
+                review the historical route and details of a specific bus
+              </blockquote>
+            </details>
+          </li>
+        </ul>
+        <ul id="0029e5b3-2b26-40ab-8851-1ad419919e40" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >How does the &quot;Share Bus Live Location&quot; feature work
+                  on the GPS Tracking List Page?</strong
+                >
+              </summary>
+              <blockquote id="e51bb12e-bb3e-4e59-ac04-6311671b2eb7" class="">
+                This feature allows you to share the live location of a specific
+                bus via a link, which remains valid for 6 hours. It&#x27;s
+                useful for sharing the real-time location with others.
+              </blockquote>
+              <p id="36d81452-c39f-4459-9017-3f73ad350c43" class=""></p>
+            </details>
+          </li>
+        </ul>
+        <ul id="22cbc64e-efe0-4e4e-b16a-06b114f176d9" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >Why are some buses continuously shimmering on the GPS
+                  Tracking List Page?</strong
+                >
+              </summary>
+              <blockquote id="e677aba5-fe34-4935-97b9-5d29d3d94e54" class="">
+                Shimmering indicates ongoing loading or processing. If it
+                persists, it might be due to change in the deviceId or temporary
+                server issues. The shimmer will be replaced with the actual data
+                once retrieved.
+              </blockquote>
+            </details>
+          </li>
+        </ul>
+        <ul id="cf569b19-61a0-45bf-a7d7-314acc62558d" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >Can I see historical routes directly from the GPS Tracking
+                  List Page?</strong
+                >
+              </summary>
+              <blockquote id="262607d0-ee8f-4ee6-aa2d-7b57bcfa4c44" class="">
+                Yes, by clicking on the GPS bus card, you&#x27;ll be directed to
+                the &quot;History Replay Page,&quot; where you can access
+                historical routes, real-time details, and trip statistics for a
+                specific bus.
+              </blockquote>
+            </details>
+          </li>
+        </ul>
+        <ul id="34afee82-0092-4f6b-8551-5a98e1f36e5f" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >Why is the bus address not updating in real-time on the Live
+                  Tracking Page?</strong
+                >
+              </summary>
+              <blockquote id="799ef4ca-aa3d-437c-a299-9f74f98ff5d5" class="">
+                The address is inherited from the previous page; it updates only
+                when you revisit the page. All data refreshes at a 30-second
+                interval.
+              </blockquote>
+            </details>
+          </li>
+        </ul>
+        <ul id="11f9826b-ec11-49fe-92d9-9704d73aa32e" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >Why does the map sometimes show a blurry or grey
+                  screen?</strong
+                >
+              </summary>
+              <blockquote id="be47ea4b-264d-4eff-8c3f-c85144d423ba" class="">
+                This could be due to slow internet speed; a stable connection is
+                needed for optimal map display.
+              </blockquote>
+              <p id="e3895ceb-ffa7-4bb1-b87a-2dec31d9b536" class=""></p>
+            </details>
+          </li>
+        </ul>
+        <ul id="3397c9d8-fab4-4e40-8e06-f24b8616b1ca" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >Why is the Arrival/Departure time available only for certain
+                  towns on the Itinerary?</strong
+                >
+              </summary>
+              <blockquote id="63f54ad4-892f-476f-a447-e7119a60ccac" class="">
+                The availability of these times depends on whether the API
+                response includes these fields for specific towns.
+              </blockquote>
+              <p id="a1412f4c-fce9-4bbb-b9d9-88e7fd4e1c4a" class=""></p>
+            </details>
+          </li>
+        </ul>
+        <ul id="0dd8500d-c32d-40c2-b438-451bad29b115" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong>Why is the bus on the map not moving sometimes?</strong>
+              </summary>
+              <blockquote id="692a94a5-3191-4c17-85c2-cdc7c8201e92" class="">
+                The bus movement relies on the Traccar live location trail. If
+                the trail is not available, the bus will be unable to move on
+                the map. In simple terms, we are not getting the updates from
+                the Traccar.
+              </blockquote>
+              <p id="e54f56f5-a140-483e-80e3-a600024182b8" class=""></p>
+            </details>
+          </li>
+        </ul>
+        <ul id="33a7deba-4d9a-4259-9381-4ae711347067" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >Why does the &quot;Is Trip ka Hisaab&quot; button sometimes
+                  show an error toast?</strong
+                >
+              </summary>
+              <blockquote id="b71a280c-c01e-413d-a102-97f46adae4bd" class="">
+                This occurs when there is no linked trip ID for the bus. Ensure
+                a linked trip ID for accurate results.
+              </blockquote>
+              <p id="331cf048-0993-465d-a173-0aae850e6224" class=""></p>
+            </details>
+          </li>
+        </ul>
+        <ul id="d719bfa1-96d3-40e8-99e1-0f233ba722de" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong
+                  >How can I troubleshoot if the historical route playback
+                  doesn&#x27;t start when I click &quot;Play&quot;?</strong
+                >
+              </summary>
+              <blockquote id="02d554a6-e1c8-4d8a-afd5-dd849df3df79" class="">
+                Verify your internet connection and try reloading the page. If
+                the issue persists, <strong>⸮</strong>
+              </blockquote>
+              <p id="d903296a-5358-449d-af92-d8354cc0cba7" class=""></p>
+              <p id="2943721c-5938-4675-a07a-ab80bde5c88d" class=""></p>
+            </details>
+          </li>
+        </ul>
+        <h1 id="4bb4fbc4-e8ae-4ec2-8def-8fde3ed7d0bc" class="">Tutorials</h1>
+        <ul id="435e3103-bbdb-44a6-9aa9-ff09606be015" class="toggle">
+          <li>
+            <details close="">
+              <summary>
+                <strong>How to view live location of a particular “</strong
+                ><strong><mark class="highlight-orange">Bus</mark></strong
+                ><strong>”?</strong>
+              </summary>
+              <ul
+                id="f6ff158d-d577-4c9d-9d04-f37defb7db1c"
+                class="bulleted-list"
+              >
+                <li style="list-style-type: disc">
+                  To open GPS Tracking Page, click “Saari Busse Dekhe” button in
+                  GPS Tracking Card or by tapping anywhere on the card.
+                  <figure
+                    id="f6522a34-afea-4533-b9d2-eb9dba1951d9"
+                    class="image"
+                  >
+                    <a
+                      href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Untitled.png"
+                      ><img
+                        style="width: 336px"
+                        src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Untitled.png"
+                    /></a>
+                  </figure>
+                </li>
+              </ul>
+              <ul
+                id="8aff0c1f-a7ad-43a3-8f6a-d95fc5dc0c9f"
+                class="bulleted-list"
+              >
+                <li style="list-style-type: disc">
+                  Navigate to the GPS Tracking Page and select the bus card for
+                  which you want to view the live GPS tracking.
+                </li>
+              </ul>
+              <div
+                id="5e999b16-88dd-431b-a288-ce143f2ceecd"
+                class="column-list"
+              >
+                <div
+                  id="17275f4f-19e2-410e-9e58-be285cc92c28"
+                  style="width: 100%"
+                  class="column"
+                >
+                  <figure
+                    id="cdd6f57e-3602-404f-949b-64dce2700759"
+                    class="image"
+                  >
+                    <a
+                      href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/WhatsApp_Image_2024-02-19_at_12.52.06_4fbb9be6.jpg"
+                      ><img
+                        style="width: 240px"
+                        src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/WhatsApp_Image_2024-02-19_at_12.52.06_4fbb9be6.jpg"
+                    /></a>
+                  </figure>
+                  <p id="fc56cee5-718f-445b-8d49-f9f00aab6295" class=""></p>
+                </div>
+                <div
+                  id="d19e5617-fa60-431e-b00c-5b71a5c20033"
+                  style="width: 100%"
+                  class="column"
+                >
+                  <p id="96a3c96b-365e-4538-91d1-574372d8e7d6" class=""></p>
+                  <figure
+                    id="d41bd260-dda7-4f88-8b7b-65682da64521"
+                    class="image"
+                  >
+                    <a
+                      href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160559%201.jpg"
+                      ><img
+                        style="width: 240px"
+                        src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160559%201.jpg"
+                    /></a>
+                  </figure>
+                </div>
+              </div>
+              <figure
+                class="block-color-gray_background callout"
+                style="white-space: pre-wrap; display: flex"
+                id="4461b8ae-83ac-4ad1-bec8-82062ec5871d"
+              >
+                <div style="font-size: 1.5em"><span class="icon">💡</span></div>
+                <div style="width: 100%">
+                  <strong
+                    >To view the historical playback route of this bus</strong
+                  >
+                </div>
+              </figure>
+              <ul
+                id="f653b0d8-6ac0-4efd-88be-7651c0ffacf5"
+                class="bulleted-list"
+              >
+                <li style="list-style-type: disc">
+                  Click on “<strong>Play Journey</strong>” to view historical
+                  playback
+                </li>
+              </ul>
+              <div
+                id="bfd5f6cc-a3b9-4b72-b324-cde2c110a8a1"
+                class="column-list"
+              >
+                <div
+                  id="7f436c15-ae91-41aa-a6f1-bd7a31451cff"
+                  style="width: 100%"
+                  class="column"
+                >
+                  <figure
+                    id="57df31b9-373a-4504-a80f-d32362669cb4"
+                    class="image"
+                  >
+                    <a
+                      href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160612.jpg"
+                      ><img
+                        style="width: 288px"
+                        src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Screenshot_20240214_160612.jpg"
+                    /></a>
+                  </figure>
+                  <p id="e40d7973-c28e-4899-af48-a17f4c087a23" class=""></p>
+                </div>
+                <div
+                  id="f15d3392-b882-4acf-b2e5-a138af6f37fa"
+                  style="width: 100%"
+                  class="column"
+                >
+                  <p id="6a1e95f9-da23-40de-9ee7-62a216fe4bdc" class=""></p>
+                  <figure
+                    id="0a0cc9cc-0109-4de3-aeca-44c4c81edd7e"
+                    class="image"
+                  >
+                    <a
+                      href="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Untitled.jpeg"
+                      ><img
+                        style="width: 240px"
+                        src="GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375/Untitled.jpeg"
+                    /></a>
+                  </figure>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </article>
+    <span class="sans" style="font-size: 14px; padding-top: 2em"></span>
+  </body>
+</html>
