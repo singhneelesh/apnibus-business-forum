@@ -1,0 +1,24 @@
+{
+    "en": {
+        "title": "ApniBus Business Forum",
+        "reportsText" : "🚜 Reports",
+        "myProfileText" : "🚜 My Profile",
+        "hisaabText" : "🚜 Hisaab",
+        "gpsText" : "🚜 GPS Tracking",
+        "cashSettlementText" : "🚜 Cash Settlement",
+        "onlinePaymentText" : "🚜 Online Payment History",
+        "settingsText" : "🚜 Smart Ticketing Machine",
+        "onlineBookingsText" : "🚜 Online Bookings"
+    },
+    "hi": {
+        "title": "अपनीबस बिज़नेस फोरम",
+        "reportsText": "🚜 रिपोर्टें",
+        "myProfileText": "🚜 मेरी प्रोफ़ाइल",
+        "hisaabText": "🚜 हिसाब",
+        "gpsText": "🚜 जीपीएस ट्रैकिंग",
+        "cashSettlementText": "🚜 कैश सेटलमेंट",
+        "onlinePaymentText": "🚜 ऑनलाइन पेमेंट हिस्ट्री",
+        "settingsText": "🚜 स्मार्ट टिकटिंग मशीन",
+        "onlineBookingsText": "🚜 ऑनलाइन बुकिंग्स"
+    }
+}
