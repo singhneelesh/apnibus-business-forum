@@ -1,5 +1,5 @@
 // Load translations from JSON file
-const translations = fetch("index-translations.json")
+const translations = fetch("my-profile-translations.json")
   .then((response) => response.json())
   .catch((error) => console.error("Error loading translations:", error));
 
@@ -8,9 +8,6 @@ async function changeLanguage(languageCode) {
   try {
     const translationData = await translations;
     const languageData = translationData[languageCode];
-
-    //Update the lang toggle key
-    document.getElementById("language-switch").checked = languageCode == 'hi' ? true : false;
 
     // Update text content based on language data
     var keys = Object.keys(languageData);
@@ -28,17 +25,3 @@ async function changeLanguage(languageCode) {
 
 // Set the default language here
 changeLanguage(localStorage.getItem("languageSelected") ?? "en");
-
-// Event listener for the translate button
-document
-  .getElementById("language-switch")
-  .addEventListener("change", function () {
-
-    // Save to Local Storage
-    localStorage.setItem("languageSelected", document.getElementById("language-switch").checked ? "hi" : "en");
-
-    // Change language
-    changeLanguage(
-      document.getElementById("language-switch").checked ? "hi" : "en"
-    );
-  });
