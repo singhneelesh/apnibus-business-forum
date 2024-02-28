@@ -52,9 +52,9 @@
       .page-title {
         font-size: 2.5rem;
         font-weight: 700;
-        margin-top: 0;
         margin-left: 30;
-        margin-bottom: 0.75em;
+        margin-top: auto;
+        margin-bottom: auto;
       }
 
       h1 {
@@ -350,7 +350,8 @@
         display: block;
         object-fit: contain;
         width: 100%;
-        max-height: 155;
+        scale: 1.5;
+        max-height: 80;
       }
 
       .page-header-icon {
@@ -842,21 +843,6 @@
   <body>
     <article id="9a87147b-2364-49d2-b6b5-9bea0dd8c66c" class="page sans">
       <header>
-        <div
-          style="
-            display: flex;
-            flex-direction: row;
-            padding: 12;
-            justify-content: end;
-          "
-        >
-          <p style="margin-right: 10; font-weight: 600; font-size: 20; ">English</p>
-          <label class="switch" style="margin: auto 0;">
-            <input id="language-switch" type="checkbox" />
-            <span class="slider round"></span>
-          </label>
-          <p style="margin-left: 10; font-weight: 600; font-size: 20;">Hindi</p>
-        </div>
         <img
           id="img-logo-apnibus"
           class="page-cover-image"
@@ -866,7 +852,26 @@
         <div class="page-header-icon page-header-icon-with-cover">
           <span class="icon" style="margin-top: 60">🚍</span>
         </div>
-        <h1 id="title" class="page-title">ApniBus Business Forum</h1>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+          <h1 id="title" class="page-title">ApniBus Business Forum</h1>
+          <div
+          style="
+            display: flex;
+            flex-direction: row;
+            padding: 12;
+            justify-content: end;
+            margin-right: 20;
+          "
+        >
+          <p style="margin-right: 10; font-weight: 600; font-size: 20; ">English</p>
+          <label class="switch" style="margin: auto 0;">
+            <input id="language-switch" type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+          <p style="margin-left: 10; font-weight: 600; font-size: 20;">Hindi</p>
+        </div>
+        </div>
+        
         <p class="page-description"></p>
       </header>
       <div class="page-body">
