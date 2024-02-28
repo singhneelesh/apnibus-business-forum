@@ -42,3 +42,19 @@ document
       document.getElementById("language-switch").checked ? "hi" : "en"
     );
   });
+
+  document.getElementById("englishText").addEventListener("click", function () {
+    // Save to Local Storage
+    localStorage.setItem("languageSelected", "en");
+
+    // Change language
+    changeLanguage("en");
+  });
+
+  document.getElementById("hindiText").addEventListener("click", function () {
+    // Save to Local Storage
+    localStorage.setItem("languageSelected", "hi");
+
+    // Change language
+    changeLanguage("hi");
+  });
