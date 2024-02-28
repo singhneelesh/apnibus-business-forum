@@ -13,10 +13,9 @@ async function changeLanguage(languageCode) {
     var keys = Object.keys(languageData);
 
     for (let i = 0; i < keys.length; i++) {
-      if (document.getElementById(keys[i]) == null) {
-        return;
+      if (document.getElementById(keys[i]) != null) {
+        document.getElementById(keys[i]).textContent = languageData[keys[i]];
       }
-      document.getElementById(keys[i]).textContent = languageData[keys[i]];
     }
   } catch (error) {
     console.error("Error changing language:", error);

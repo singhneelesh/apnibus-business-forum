@@ -10,16 +10,16 @@ async function changeLanguage(languageCode) {
     const languageData = translationData[languageCode];
 
     //Update the lang toggle key
-    document.getElementById("language-switch").checked = languageCode == 'hi' ? true : false;
+    document.getElementById("language-switch").checked =
+      languageCode == "hi" ? true : false;
 
     // Update text content based on language data
     var keys = Object.keys(languageData);
 
     for (let i = 0; i < keys.length; i++) {
-      if (document.getElementById(keys[i]) == null) {
-        return;
+      if (document.getElementById(keys[i]) != null) {
+        document.getElementById(keys[i]).textContent = languageData[keys[i]];
       }
-      document.getElementById(keys[i]).textContent = languageData[keys[i]];
     }
   } catch (error) {
     console.error("Error changing language:", error);
@@ -33,9 +33,11 @@ changeLanguage(localStorage.getItem("languageSelected") ?? "en");
 document
   .getElementById("language-switch")
   .addEventListener("change", function () {
-
     // Save to Local Storage
-    localStorage.setItem("languageSelected", document.getElementById("language-switch").checked ? "hi" : "en");
+    localStorage.setItem(
+      "languageSelected",
+      document.getElementById("language-switch").checked ? "hi" : "en"
+    );
 
     // Change language
     changeLanguage(
@@ -43,18 +45,18 @@ document
     );
   });
 
-  document.getElementById("englishText").addEventListener("click", function () {
-    // Save to Local Storage
-    localStorage.setItem("languageSelected", "en");
+document.getElementById("englishText").addEventListener("click", function () {
+  // Save to Local Storage
+  localStorage.setItem("languageSelected", "en");
 
-    // Change language
-    changeLanguage("en");
-  });
+  // Change language
+  changeLanguage("en");
+});
 
-  document.getElementById("hindiText").addEventListener("click", function () {
-    // Save to Local Storage
-    localStorage.setItem("languageSelected", "hi");
+document.getElementById("hindiText").addEventListener("click", function () {
+  // Save to Local Storage
+  localStorage.setItem("languageSelected", "hi");
 
-    // Change language
-    changeLanguage("hi");
-  });
+  // Change language
+  changeLanguage("hi");
+});
