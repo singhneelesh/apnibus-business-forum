@@ -60,3 +60,5 @@ document.getElementById("hindiText").addEventListener("click", function () {
   // Change language
   changeLanguage("hi");
 });
+
+console.log("Hell yeah, Welcome to ApniBus Business Forum!!!");
