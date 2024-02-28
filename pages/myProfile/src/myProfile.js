@@ -28,10 +28,10 @@ changeLanguage(localStorage.getItem("languageSelected") ?? "en");
 // Back Button to navigate to home page directly
 document.getElementById("backButton").addEventListener("click", function() {
 
-  // Navigate to the first page (index.html in this example)
-  window.location.href = "../../../index.html";
-
-  // Clear browsing history
-  window.history.replaceState(null, null, "../../../index.html");
+   // Navigate to index.html
+   window.location.href = '../../../index.html';
+        
+   // Clear the browser history
+   window.history.replaceState({}, document.title, '../../../index.html');
 
 });
