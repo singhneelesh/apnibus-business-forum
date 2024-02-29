@@ -1,6 +1,6 @@
 {
     "en": {
-        "title": "Reports",
+        "title": "Cash Settlement",
         "overview": "Overview",
         "widgets": "Widgets →",
         "pendingSettlement": "Pending Settlement Card",
@@ -61,7 +61,7 @@
         "tutorialsQ507": "A dialog will pop-up with confirmation, click “Delete >” to delete the trip."
     },
     "hi": {
-        "title": "रिपोर्ट्स",
+        "title": "कैश सेटलमेंट",
         "overview": "ओवरव्यू",
         "widgets": "विजेट्स →",
         "pendingSettlement": "पेंडिंग सेटलमेंट कार्ड",

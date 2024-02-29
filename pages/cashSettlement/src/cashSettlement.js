@@ -1,5 +1,5 @@
 // Load translations from JSON file
-const translations = fetch("reportsTranslations.json")
+const translations = fetch("cashSettlementTranslations.json")
   .then((response) => response.json())
   .catch((error) => console.error("Error loading translations:", error));
 

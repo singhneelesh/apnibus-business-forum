@@ -1,0 +1,704 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Hisaab</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d4fe2c27-3a25-4ba1-8973-6ad9d9fe3d2c" class="page sans"><header><img class="page-cover-image" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Home_Hisaab_CardWidget.jpg" style="object-position:center 0%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🚜</span></div><h1 class="page-title">Hisaab</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-person"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesPerson"><path d="M10.9536 7.90088C12.217 7.90088 13.2559 6.79468 13.2559 5.38525C13.2559 4.01514 12.2114 2.92017 10.9536 2.92017C9.70142 2.92017 8.65137 4.02637 8.65698 5.39087C8.6626 6.79468 9.69019 7.90088 10.9536 7.90088ZM4.4231 8.03003C5.52368 8.03003 6.42212 7.05859 6.42212 5.83447C6.42212 4.63843 5.51245 3.68945 4.4231 3.68945C3.33374 3.68945 2.41846 4.64966 2.41846 5.84009C2.42407 7.05859 3.32251 8.03003 4.4231 8.03003ZM1.37964 13.168H5.49561C4.87231 12.292 5.43384 10.6074 6.78711 9.51807C6.18628 9.14746 5.37769 8.87231 4.4231 8.87231C1.95239 8.87231 0.262207 10.6917 0.262207 12.1628C0.262207 12.7974 0.548584 13.168 1.37964 13.168ZM7.50024 13.168H14.407C15.4009 13.168 15.7322 12.8423 15.7322 12.2864C15.7322 10.8489 13.8679 8.88354 10.9536 8.88354C8.04492 8.88354 6.17505 10.8489 6.17505 12.2864C6.17505 12.8423 6.50635 13.168 7.50024 13.168Z"></path></svg></span>Owner</th><td><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14Gho_h3gzcN4lng7mjoYRzeP5lDJp64Oro5iMzWHkg=s100" class="icon user-icon"/>Neelesh Singh</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th><td><span class="selected-value select-value-color-purple">Completed</span></td></tr></tbody></table></header><div class="page-body"><nav id="10ed6e5e-00f9-4c64-8466-b911b0c44ef3" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#77514ffc-38f0-47f8-900d-67fb6e42c303"><strong><strong>Overview</strong></strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3553dc4a-450d-48e8-a6ed-6890277ff49c">Widgets →</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#7de4be64-dfa0-42e0-8964-53733647946d">Home Hisaab Card</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#b8be80e2-af8d-43a9-bc66-d7f22d877978">Top Performer Card</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#b538ffe3-ac7b-4cb6-b00d-49a9668764e2">Bus Hisaab Card</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#77229369-b88c-45f5-b0d8-47343f928e20">Trip Hisaab Card</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0a26a6d6-893a-49ed-a514-dfb116e27875">FAQs →</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#32b9caa4-d218-47bf-bc14-59463b802a3c">Tutorials →</a></div></nav><h1 id="77514ffc-38f0-47f8-900d-67fb6e42c303" class=""><strong><strong>Overview</strong></strong></h1><p id="4391f418-ab68-4ea3-bcd5-28a50551e9e1" class="">The &quot;Hisaab&quot; feature in the ApniBus Business app allows bus owners to monitor and manage their hisaab effectively.</p><h2 id="3553dc4a-450d-48e8-a6ed-6890277ff49c" class="">Widgets →</h2><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Home Hisaab Card</summary><div class="indented"><p id="aca95aaa-a59d-4b33-913f-87ca9cb07f19" class="">The Home Hisaab Card gives bus owners a quick overview of their daily earnings, booked seats, and a weekly comparison, making it easy to track key financial details at a single point.</p><figure id="0dfb09af-d0df-4cea-adf7-eaf93d95c050" class="image" style="text-align:center"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled.png"><img style="width:334px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled.png"/></a></figure><ul id="652bf8d4-4da5-47c0-a50f-ad064c9da656" class="bulleted-list"><li style="list-style-type:disc"><strong>Date:</strong> Displays the current date for quick reference.</li></ul><ul id="2464e5b6-c87f-42d3-853a-4b56ebe7a766" class="bulleted-list"><li style="list-style-type:disc"><strong>Total Amount:</strong> Shows the total revenue generated for the selected day.</li></ul><ul id="1158fd14-b63a-47e7-a904-981b8fb6bec9" class="bulleted-list"><li style="list-style-type:disc"><strong>Seats Booked:</strong> Indicates the total number of seats booked on the selected day.</li></ul><ul id="8c7bac95-a8b3-4da4-b7f9-2f1ea980a31f" class="bulleted-list"><li style="list-style-type:disc"><strong>Last Week Summary:</strong> Provides a summary of revenue and bookings for the same day of the week in the last week in form of percentage.</li></ul><ul id="082adef5-d53f-4fc4-9469-45eb1b24bf55" class="bulleted-list"><li style="list-style-type:disc"><strong>Cash and Online Transaction Amount:</strong> Separates and displays the amount received in cash and through online transactions and increase percentage of them from last week.</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Top Performer Card</summary><div class="indented"><p id="515b1f15-14ff-46c5-a6a9-b278ac71f667" class="">The Home Hisaab Card gives bus owners a quick overview of their daily earnings, booked seats, and a weekly comparison, making it easy to track key financial details at a single point.</p><figure id="588fd3de-729c-4a90-a4f8-12d04a97e1f0" class="image" style="text-align:center"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled%201.png"><img style="width:338px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled%201.png"/></a></figure><ul id="6cd5dadd-d058-4a03-85b5-f06c77a1b10d" class="bulleted-list"><li style="list-style-type:disc"><strong>Bus-Wise:</strong> Displays the top performing (top earning) buses of the selected day.</li></ul><ul id="95b60e6a-1f95-4c80-8dd1-d4de64911fb4" class="bulleted-list"><li style="list-style-type:disc"><strong>Route-Wise:</strong> Displays the top performing (top earning) routes of the selected day.</li></ul><ul id="99f52b8f-1d23-44b0-836b-e71d9094adf3" class="bulleted-list"><li style="list-style-type:disc"><strong>Amount:</strong> Shows the total revenue generated for the selected day along with its increase/decrease compared to last week.</li></ul><ul id="86319054-6cc2-41cc-8120-fcc469046bb1" class="bulleted-list"><li style="list-style-type:disc"><strong>Seats Booked:</strong> Indicates the total number of seats booked on the selected day.</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Bus Hisaab Card</summary><div class="indented"><p id="918ff0bf-657c-4334-8494-45674459bb69" class="">The Bus Hisaab Card gives bus owners a quick overview of their daily earnings, booked seats, and a weekly comparison, making it easy to track key financial details at a single point.</p><figure id="d19e1093-1303-4578-9822-bef6dcf89eb9" class="image" style="text-align:center"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled%202.png"><img style="width:337px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled%202.png"/></a></figure><ul id="869b965b-a09e-433d-ab3b-66fa4e14a84c" class="bulleted-list"><li style="list-style-type:disc"><strong>Date:</strong> Displays the current date for quick reference.</li></ul><ul id="f59d2f94-756a-4398-b6f2-5ea5ace4fa2b" class="bulleted-list"><li style="list-style-type:disc"><strong>Total Amount:</strong> Shows the total revenue generated for the selected day.</li></ul><ul id="c4153aad-61d4-4193-8b56-de1eafee1597" class="bulleted-list"><li style="list-style-type:disc"><strong>Seats Booked:</strong> Indicates the total number of seats booked on the selected day.</li></ul><ul id="7b435d24-3af9-44f0-8f5b-5dfc856312ee" class="bulleted-list"><li style="list-style-type:disc"><strong>Last Week Summary:</strong> Provides a summary of revenue and bookings for the same day of the week in the last week in form of percentage.</li></ul><ul id="3b35be74-cd6f-4e79-935c-28b4daa5af0f" class="bulleted-list"><li style="list-style-type:disc"><strong>Cash and Online Transaction Amount:</strong> Separates and displays the amount received in cash and through online transactions.</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Trip Hisaab Card</summary><div class="indented"><p id="62b73ed6-fca3-454f-b172-41ff6643294c" class="">The Trip Hisaab Card gives bus owners a quick overview of their daily earnings, booked seats, and a weekly comparison, making it easy to track key financial details at a single point.</p><figure id="ec5cffb9-dcbc-4a58-855f-5427832476cd" class="image" style="text-align:center"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled%203.png"><img style="width:337px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled%203.png"/></a></figure><ul id="bc31a5e8-13f3-4490-8917-0e1f6eb4872d" class="bulleted-list"><li style="list-style-type:disc"><strong>Date:</strong> Displays the current date for quick reference.</li></ul><ul id="f405a7af-67d7-49c1-96c9-83bad6904813" class="bulleted-list"><li style="list-style-type:disc"><strong>Total Amount:</strong> Shows the total revenue generated for the selected day.</li></ul><ul id="0511d2e5-c1db-4cc8-8427-4bea15d571d3" class="bulleted-list"><li style="list-style-type:disc"><strong>Seats Booked:</strong> Indicates the total number of seats booked on the selected day.</li></ul><ul id="27b306df-8b53-46be-ba71-d05c5ec98ab6" class="bulleted-list"><li style="list-style-type:disc"><strong>Last Week Summary:</strong> Provides a summary of revenue and bookings for the same day of the week in the last week in form of percentage.</li></ul><ul id="db7c1c03-6b5c-4f36-8274-d580091f0c31" class="bulleted-list"><li style="list-style-type:disc"><strong>Cash and Online Transaction Amount:</strong> Separates and displays the amount received in cash and through online transactions.</li></ul></div></details><h1 id="0a26a6d6-893a-49ed-a514-dfb116e27875" class="">FAQs →</h1><ul id="6120dad0-82b8-4a49-b871-0f1e4c78a728" class="toggle"><li><details open=""><summary>Why my hisaab is showing “No Data Found” despite my buses are running on routes?</summary><ul id="9fc309c3-c6e7-43e2-8a0f-a1b708c39e2c" class="bulleted-list"><li style="list-style-type:disc">The trip data might not have synced yet, ask to wait to at-least 30 mins,</li></ul><ul id="76724dd6-b73a-4bae-aec4-f3ae2722d9f2" class="bulleted-list"><li style="list-style-type:disc">If the issue is still not resolved, communicate the details with the team.</li></ul></details></li></ul><ul id="2a4c7965-9e4f-462e-bb6d-50bca9642172" class="toggle"><li><details open=""><summary>Why my trip hisaab having “Missing no of trips/less trips than actual” on any date?</summary><ul id="7c77fdb7-5cc9-4861-b9f8-fa3343e471e0" class="bulleted-list"><li style="list-style-type:disc">That particular trip data might not have synced yet, ask to wait to atleast 30 mins,</li></ul><ul id="73c178ce-51b5-4439-bfa8-e43f66197875" class="bulleted-list"><li style="list-style-type:disc">If the issue is still not resolved, communicate the details of the missing trip with the team.</li></ul></details></li></ul><h1 id="32b9caa4-d218-47bf-bc14-59463b802a3c" class="">Tutorials →</h1><ul id="3ad686e9-4a5f-4f64-a52e-1da972d5d741" class="toggle"><li><details open=""><summary>How to view  “<em>Bus-Wise Hisaab</em>” of any <mark class="highlight-yellow">“</mark><mark class="highlight-yellow"><strong>specific date”</strong></mark>?</summary><ol type="1" id="45d59222-4795-4eca-85b4-674dce49870b" class="numbered-list" start="1"><li>To open Hisaab Page, click ”Hisaab Dekhe &gt;” button in Recent Trips Card or by tapping any of the “Hisab” cards.<div id="a91d3d15-7823-412b-8eaa-5a4295d4f23c" class="column-list"><div id="218ca308-5508-42fc-a85f-30b7a1766622" style="width:50%" class="column"><figure id="3a7c9fe6-08d4-4f75-83d1-43bbdd58dcb4" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(2).png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(2).png"/></a></figure><p id="fc302d31-9dba-4162-a72f-6b19643b6626" class="">
+</p></div><div id="ce1eebff-59ae-405a-92c4-5a59c535c6a9" style="width:50%" class="column"><figure id="cf246743-8c46-4b33-aa6e-e2eed2574d4c" class="image" style="text-align:left"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(3).png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(3).png"/></a></figure><p id="3bc98ab5-a0dc-44df-8b1c-3608fc34db75" class="">
+</p></div></div></li></ol><ol type="1" id="48252c40-1f26-4068-b8d1-0f23d4f8d51b" class="numbered-list" start="2"><li>In Hisaab Page, the Hisaab data is presented bus wise!<ol type="a" id="a605a3ab-608b-41a1-be44-1e145a522238" class="numbered-list" start="1"><li>The default selected date is Today</li></ol><ol type="a" id="6e6d36fe-e36e-4cd9-a77c-c97c0dcb7646" class="numbered-list" start="2"><li>You can see Yesterday Hisaab by tapping the toggle button at top to Yesterday!</li></ol><figure id="642b3e15-c865-4e7e-b7a0-a3869113ce47" class="image"><a href="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%202.png"><img style="width:337px" src="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%202.png"/></a></figure></li></ol><p id="a235d901-72d2-4e51-acf5-6929553bee57" class="">
+</p><ol type="1" id="5758ef61-9cfd-431b-8c8d-b1fdb1a3272b" class="numbered-list" start="3"><li>To look Hisaab of any specific date, Tap the Calendar icon at top right of application.<figure id="c2049203-a712-49b3-8ea8-0aeca321e52e" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(1).png"><img style="width:338px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(1).png"/></a></figure></li></ol><p id="c8faff69-9b19-443f-a888-e0fa6e2dbe30" class="">
+</p><ol type="1" id="96503950-88fe-49b8-a06f-8aec7636d34d" class="numbered-list" start="4"><li>Date Selection windows pops up, select any date from here &amp; submit to view that day Hisaab.<figure id="c3f97f21-031e-449f-9b23-40a51f379eea" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled%204.png"><img style="width:339px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled%204.png"/></a></figure></li></ol></details></li></ul><ul id="36565baa-ca13-4709-bcaa-1e738ff48280" class="toggle"><li><details open=""><summary>How to view “<em>Bus-Wise Hisaab</em>” of any <strong><mark class="highlight-teal">“specific bus”</mark></strong>?</summary><ol type="1" id="2b89e7e0-3c48-4a33-8b89-af3a8ca0bf16" class="numbered-list" start="1"><li>To open Hisaab Page, click ”Hisaab Dekhe &gt;” button in Recent Trips Card or by tapping any of the “Hisab” cards.<div id="a0b5863e-5b0e-45c2-ba13-bd7bb6ed5f98" class="column-list"><div id="28e8fdd6-1dbd-4c10-86b3-565cfa313417" style="width:50%" class="column"><figure id="f49ff013-4fc0-4382-8d3f-6ff0885846a9" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(2)%201.png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(2)%201.png"/></a></figure><p id="78ff4b37-f123-4d94-bf02-df69b082c6dd" class="">
+</p></div><div id="7f7edb0d-b6f7-4b2f-9216-78c51f344f24" style="width:50%" class="column"><figure id="e0720e76-5959-40db-b6cd-959e898877b3" class="image" style="text-align:left"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(3)%201.png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(3)%201.png"/></a></figure><p id="4c86f539-09e4-42e7-a0a6-5d041e216204" class="">
+</p></div></div></li></ol><ol type="1" id="5f5832b4-40bf-40ae-84b8-3b73b0b842d7" class="numbered-list" start="2"><li>In Hisaab Page, the Hisaab data is presented bus wise!<ol type="a" id="d524b124-5212-43ba-b83e-0e6fcdb80e4a" class="numbered-list" start="1"><li>No default selection is there.</li></ol><ol type="a" id="42a2b24a-0ed5-4e4f-a948-fe7a43a3806f" class="numbered-list" start="2"><li>Shows data of all the buses that have pos.</li></ol><figure id="631db9e8-3def-403d-afca-62a1d09bf110" class="image"><a href="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%205.png"><img style="width:337px" src="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%205.png"/></a></figure></li></ol><p id="29d8cf1d-036b-4cb3-893d-3bb40964c1a7" class="">
+</p><ol type="1" id="0a8b586c-385d-4243-8828-3621b1a99a0a" class="numbered-list" start="3"><li>To look Hisaab of any specific bus, Tap the “All Buses” drop-down field at left of Download Button, it will show you the list of buses.<figure id="820bb8fb-ec93-4f34-874f-91cdcfa19c7f" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(4).png"><img style="width:190px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(4).png"/></a></figure></li></ol><p id="f7152c58-b12f-4ff4-9c44-a9012e95ecfd" class="">
+</p><ol type="1" id="31a9693d-88bc-4d01-92d3-3fa485e436b7" class="numbered-list" start="4"><li>Upon selection, the bar will now look something like this.<figure id="249ad78b-4f21-4338-b938-3b6c03968224" class="image"><a href="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%207.png"><img style="width:337px" src="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%207.png"/></a></figure></li></ol><p id="b2c85ab8-e7fb-40b5-8e40-e5b5fbf47a55" class="">
+</p><ol type="1" id="5fa103c7-4539-46ee-a2c4-7ada2c465120" class="numbered-list" start="5"><li>The list will now show data of the selected bus.</li></ol><p id="f73ef8f5-01c9-41a7-beca-efee6b8a9cba" class="">
+</p></details></li></ul><ul id="e75598af-7775-4955-9c49-312263758cca" class="toggle"><li><details open=""><summary>How to view “<em>Trip-Wise Hisaab</em>”?</summary><ol type="1" id="4a30b8e3-91db-42db-a843-1761d361c076" class="numbered-list" start="1"><li>To open Hisaab Page, click ”Hisaab Dekhe &gt;” button in Recent Trips Card or by tapping any of the “Hisab” cards.<div id="081ba379-6747-405f-aba0-f041ae743dd3" class="column-list"><div id="911ab277-6be5-430e-88df-02cea0313c13" style="width:50%" class="column"><figure id="d31a352f-4737-470f-8938-78bbca17b7ce" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(2)%202.png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(2)%202.png"/></a></figure><p id="7591d236-e23f-471a-9156-b30876b389aa" class="">
+</p></div><div id="1849bacb-487b-4cde-8ea4-2a0bde250bea" style="width:50%" class="column"><figure id="93d3c230-f952-4691-8abe-5e5477115936" class="image" style="text-align:left"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(3)%202.png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(3)%202.png"/></a></figure><p id="20f263b0-6d92-4300-9be3-abb0b316b960" class="">
+</p></div></div></li></ol><ol type="1" id="cc5b58ed-983f-453e-826a-9c743c78018d" class="numbered-list" start="2"><li>In Hisaab Page, the Hisaab data is presented bus wise, tap on any card to view its Trip Level Hisaab.<figure id="bb6ce0bb-1aec-46a5-9e01-0a4f813f90f7" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(5).png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(5).png"/></a></figure></li></ol><p id="9a6a00db-9145-41af-bce4-9fe1a227a5a5" class="">
+</p><ol type="1" id="7bcba5be-624c-45d0-92c3-59defad37b43" class="numbered-list" start="3"><li>To “Trip Hisaab” page show the Hisaab of Trips covered by that bus.<figure id="4fd83c11-ae2d-4531-b151-298fe5b0505b" class="image"><a href="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%209.png"><img style="width:336px" src="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%209.png"/></a></figure></li></ol><p id="8f02cbc5-0799-4fd8-ad24-b726175ecada" class="">
+</p></details></li></ul><ul id="1490dd65-2a54-4bfc-a463-ab3545f96043" class="toggle"><li><details open=""><summary>How to view  “<em>Trip-Wise Hisaab</em>” of any <mark class="highlight-yellow">“</mark><mark class="highlight-yellow"><strong>selected bus - of older date” </strong></mark><mark class="highlight-default"><strong>at Trip Hisaab Page</strong></mark>?</summary><ol type="1" id="eeb2217a-8fdd-4ddd-a97f-3085b797b4d3" class="numbered-list" start="1"><li>To open Hisaab Page, click ”Hisaab Dekhe &gt;” button in Recent Trips Card or by tapping any of the “Hisab” cards.<div id="ebbce7c8-8635-4058-894e-79b4cb54ac3f" class="column-list"><div id="35f62e8f-ba1b-47cd-a8b8-ed54b26d53a7" style="width:50%" class="column"><figure id="a3f945a3-b952-4f53-ad08-f47c23c7284b" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(2)%203.png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(2)%203.png"/></a></figure><p id="31b80550-2caf-4b97-bd5c-829802fcbc29" class="">
+</p></div><div id="0b8edbe5-a5fa-4957-a5b5-305e65e76c6d" style="width:50%" class="column"><figure id="42c470d5-7ce2-4f17-a166-bd715c0fbf02" class="image" style="text-align:left"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(3)%203.png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(3)%203.png"/></a></figure><p id="df281dc2-84cd-4c46-b03a-79d6a9410a92" class="">
+</p></div></div></li></ol><ol type="1" id="a0325f8a-2973-4d3d-a9d6-94f9b8ef21a6" class="numbered-list" start="2"><li>In Hisaab Page, the Hisaab data is presented bus wise, tap on any card to view its Trip Level Hisaab.<figure id="3f677a43-5000-4b93-8e97-6158dd81d36a" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(5)%201.png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(5)%201.png"/></a></figure></li></ol><p id="d322abe5-20e7-4902-a520-a6f59054a7c5" class="">
+</p><ol type="1" id="5ce2918a-bc4b-4964-ba0d-01d8dd1c8e4e" class="numbered-list" start="3"><li>To “Trip Hisaab” page show the Hisaab of Trips covered by that bus.<figure id="6cd0d349-c594-4203-8f62-4fed5cd5508b" class="image"><a href="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%209.png"><img style="width:336px" src="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%209.png"/></a></figure></li></ol><p id="1da5cf49-6b56-4ab3-ad77-e443e1a87630" class="">
+</p><ol type="1" id="032d30a2-c3d7-413c-a916-1c32719a8a4d" class="numbered-list" start="4"><li>In Trip Hisaab Page, the Hisaab data is presented trip wise!<ol type="a" id="0cacfbdd-b53e-419c-a9c3-e4e7863a4d67" class="numbered-list" start="1"><li>The default date selected is one that was selected on Bus Hisab Page. (Previous Page)</li></ol><ol type="a" id="070a066f-3426-44bc-914d-37ac3d89f5a0" class="numbered-list" start="2"><li>You can see Yesterday Hisaab by tapping the toggle button at top to Yesterday!</li></ol><figure id="12b0f9c2-2bdd-4239-b98c-5c2c70a5aa1c" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(6).png"><img style="width:337px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(6).png"/></a></figure></li></ol><p id="31aaa225-b54c-4325-ab1f-b28051a927a0" class="">
+</p><ol type="1" id="8d3898b9-f71a-4dc1-93c3-75ed7a1447f3" class="numbered-list" start="5"><li>To look Hisaab of any specific date, Tap the Calendar icon at top right of application.<figure id="c651178e-2c34-4352-8b03-23b0df44460c" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(1)%201.png"><img style="width:338px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(1)%201.png"/></a></figure></li></ol><p id="744495b0-3856-4636-94ee-e028b89d3df4" class="">
+</p><ol type="1" id="af5bc73d-f9e5-47d8-aab0-58a061175a67" class="numbered-list" start="6"><li>Date Selection windows pops up, select any date from here &amp; submit to view the Hisaab of the selected bus on that day.<figure id="4ff490ac-df8b-46c4-a18b-1e0f4677304a" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled%205.png"><img style="width:339px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled%205.png"/></a></figure></li></ol></details></li></ul><ul id="855e3338-4df1-4ff3-8e53-28e7fb84bfa6" class="toggle"><li><details open=""><summary>How to <strong>“</strong><strong><mark class="highlight-red"><em>Delete</em></mark></strong><strong><mark class="highlight-red"> </mark></strong><strong><mark class="highlight-red"><em>Trip Hisaab</em></mark></strong><strong>”</strong>?</summary><ol type="1" id="653ac04d-50b1-4704-ac4f-a391c2e24149" class="numbered-list" start="1"><li>To open Hisaab Page, click ”Hisaab Dekhe &gt;” button in Recent Trips Card or by tapping any of the “Hisab” cards.<div id="8bdd2f24-be7b-4b5f-97b3-fc27ac86413f" class="column-list"><div id="95778b6c-d276-450e-bac3-fcb3bba86674" style="width:50%" class="column"><figure id="36be5345-dff4-4389-9a4a-22df5efd44ec" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(2)%204.png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(2)%204.png"/></a></figure><p id="0fb81561-b4bd-4160-afdd-33b593a9abf8" class="">
+</p></div><div id="eb829963-8ce5-4a71-8d43-7b0653525f91" style="width:50%" class="column"><figure id="cc01f169-ed57-4ce1-b09c-b2f7933f7148" class="image" style="text-align:left"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(3)%204.png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(3)%204.png"/></a></figure><p id="57449962-c90c-482b-8a85-4eae073d09eb" class="">
+</p></div></div></li></ol><ol type="1" id="3cdc3bea-3e37-4162-b2dd-ae1064ae9909" class="numbered-list" start="2"><li>In Hisaab Page, the Hisaab data is presented bus wise, tap on any card to view its Trip Level Hisaab.<figure id="10994007-cf95-4485-baa9-6f47840b2412" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(5)%202.png"><img style="width:336px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(5)%202.png"/></a></figure></li></ol><p id="90192f37-79f4-43a0-b7c8-2613d236eab5" class="">
+</p><ol type="1" id="41887495-5f7a-4c56-8629-33053b7ac1de" class="numbered-list" start="3"><li>To “Trip Hisaab” page show the Hisaab of Trips covered by that bus.<figure id="92121e88-dbcd-473d-b636-476f952cc52e" class="image"><a href="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%209.png"><img style="width:336px" src="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%209.png"/></a></figure></li></ol><p id="482982a2-0cff-4885-882b-c529311ff963" class="">
+</p><ol type="1" id="49f8ece5-65c8-44a4-9bf5-d6aaee3a7ca3" class="numbered-list" start="4"><li>Go to “Trip Hisaab Details” page by tapping any of the Trip Cards.<figure id="6d0b11c9-61af-4102-869d-25942af94537" class="image"><a href="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%2010.png"><img style="width:340px" src="Reports%2093c7ea58d96746528c1ff1a3723eb661/Untitled%2010.png"/></a></figure></li></ol><p id="b3ca5159-1b3a-4977-aa42-e3797a495459" class="">
+</p><ol type="1" id="09668318-12f9-4e3e-a0d4-2901b18cf2ef" class="numbered-list" start="5"><li>In the details page, there is a “Delete Button Icon” on top right side.<figure id="8a230ce2-78a8-4fdd-9bee-324bc9b8112d" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(7).png"><img style="width:480px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(7).png"/></a></figure></li></ol><p id="1e0da8c6-4a4f-47f9-8598-903b265c74be" class="">
+</p><p id="8ea68e2d-e71c-43db-83ad-43e91de6bfde" class="">
+</p><ol type="1" id="04ffe6e1-e1cb-4242-8231-bf69ebd209e8" class="numbered-list" start="7"><li>A dialog will pop-up with confirmation, click “Delete &gt;” to delete the trip.<figure id="146b8a9e-464d-48e7-bbd9-70359efd341e" class="image"><a href="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(8).png"><img style="width:339px" src="Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c/Untitled_(8).png"/></a></figure></li></ol></details></li></ul><p id="28345711-1865-4218-8307-af2e77b49b69" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
