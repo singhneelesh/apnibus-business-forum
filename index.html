@@ -17,10 +17,11 @@
       body {
         margin: 0;
         padding: 0;
+        overflow-x: hidden;
       }
       @media only screen {
         body {
-          margin: 2em auto;
+          margin: auto;
           color: rgb(55, 53, 47);
         }
       }
@@ -50,11 +51,11 @@
       }
 
       .page-title {
-        font-size: 2.5rem;
+        font-size: 5vmin;
         font-weight: 700;
-        margin-top: 0;
         margin-left: 30;
-        margin-bottom: 0.75em;
+        margin-top: auto;
+        margin-bottom: auto;
       }
 
       h1 {
@@ -350,7 +351,8 @@
         display: block;
         object-fit: contain;
         width: 100%;
-        max-height: 155;
+        scale: 1.5;
+        max-height: 80;
       }
 
       .page-header-icon {
@@ -373,7 +375,7 @@
         padding: 0;
         border: none;
         font-weight: 600;
-        font-size: larger;
+        font-size: 3.2vmin;
       }
 
       p > .user {
@@ -842,31 +844,35 @@
   <body>
     <article id="9a87147b-2364-49d2-b6b5-9bea0dd8c66c" class="page sans">
       <header>
-        <div
-          style="
-            display: flex;
-            flex-direction: row;
-            padding: 12;
-            justify-content: end;
-          "
-        >
-          <p style="margin-right: 10; font-weight: 600; font-size: 20; ">English</p>
-          <label class="switch" style="margin: auto 0;">
-            <input id="language-switch" type="checkbox" />
-            <span class="slider round"></span>
-          </label>
-          <p style="margin-left: 10; font-weight: 600; font-size: 20;">Hindi</p>
-        </div>
         <img
           id="img-logo-apnibus"
           class="page-cover-image"
-          src="ApniBus%20Business%20Forum%209a87147b236449d2b6b59bea0dd8c66c/logoExpandedApniBus.png"
+          src="logoExpandedApniBus.png"
           style="object-position: center 51.51%"
         />
         <div class="page-header-icon page-header-icon-with-cover">
           <span class="icon" style="margin-top: 60">🚍</span>
         </div>
-        <h1 id="title" class="page-title">ApniBus Business Forum</h1>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+          <h1 id="title" class="page-title">ApniBus Business Forum</h1>
+          <div
+          style="
+            display: flex;
+            flex-direction: row;
+            padding: 12;
+            justify-content: end;
+            margin-right: 20;
+          "
+        >
+          <p id="englishText" style="margin-right: 10; font-weight: 600; font-size: 20; ">English</p>
+          <label class="switch" style="margin: auto 0;">
+            <input id="language-switch" type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+          <p id="hindiText" style="margin-left: 10; font-weight: 600; font-size: 20;">हिन्दी</p>
+        </div>
+        </div>
+        
         <p class="page-description"></p>
       </header>
       <div class="page-body">
@@ -880,21 +886,21 @@
         <figure id="a786b66c-06df-4517-a746-8fe919c332de" class="link-to-page">
           <a
             id="myProfileText"
-            href="ApniBus%20Business%20Forum%209a87147b236449d2b6b59bea0dd8c66c/My%20Profile%20a786b66c06df4517a7468fe919c332de.html"
+            href="pages/myProfile/src/myProfile.html"
             ><span class="icon">🚜</span>My Profile</a
           >
         </figure>
         <figure id="d4fe2c27-3a25-4ba1-8973-6ad9d9fe3d2c" class="link-to-page">
           <a
             id="hisaabText"
-            href="ApniBus%20Business%20Forum%209a87147b236449d2b6b59bea0dd8c66c/Hisaab%20d4fe2c273a254ba189736ad9d9fe3d2c.html"
+            href="pages/hisaab/src/hisaab.html"
             ><span class="icon">🚜</span>Hisaab</a
           >
         </figure>
         <figure id="2baa871c-7ba4-4a52-81a6-6ba613f22375" class="link-to-page">
           <a
             id="gpsText"
-            href="ApniBus%20Business%20Forum%209a87147b236449d2b6b59bea0dd8c66c/GPS%20Tracking%202baa871c7ba44a5281a66ba613f22375.html"
+            href="pages/gpsTracking/src/gpsTracking.html"
             ><span class="icon">🚜</span>GPS Tracking</a
           >
         </figure>
@@ -908,21 +914,21 @@
         <figure id="6d2a751f-3211-48f9-b915-36589a9dd7dc" class="link-to-page">
           <a
             id="onlinePaymentText"
-            href="ApniBus%20Business%20Forum%209a87147b236449d2b6b59bea0dd8c66c/Online%20Payment%20History%206d2a751f321148f9b91536589a9dd7dc.html"
+            href="pages/onlinePaymentHistory/src/onlinePaymentHistory.html"
             ><span class="icon">🚜</span>Online Payment History</a
           >
         </figure>
         <figure id="c81c1aa4-829a-4f39-ae67-54c8a4f46d25" class="link-to-page">
           <a
             id="settingsText"
-            href="ApniBus%20Business%20Forum%209a87147b236449d2b6b59bea0dd8c66c/Smart%20Ticketing%20Machine%20c81c1aa4829a4f39ae6754c8a4f46d25.html"
+            href="pages/smartMachine/src/smartMachine.html"
             ><span class="icon">🚜</span>Smart Ticketing Machine</a
           >
         </figure>
         <figure id="c9703362-e42f-419e-9dea-1158ea61c0ed" class="link-to-page">
           <a
             id="onlineBookingsText"
-            href="ApniBus%20Business%20Forum%209a87147b236449d2b6b59bea0dd8c66c/Online%20Bookings%20c9703362e42f419e9dea1158ea61c0ed.html"
+            href="pages/onlineBookings/src/onlineBookings.html"
             ><span class="icon">🚜</span>Online Bookings</a
           >
         </figure>

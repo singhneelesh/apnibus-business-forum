@@ -1,5 +1,5 @@
 // Load translations from JSON file
-const translations = fetch("my-profile-translations.json")
+const translations = fetch("onlinePaymentsHistoryTranslations.json")
   .then((response) => response.json())
   .catch((error) => console.error("Error loading translations:", error));
 
@@ -13,10 +13,9 @@ async function changeLanguage(languageCode) {
     var keys = Object.keys(languageData);
 
     for (let i = 0; i < keys.length; i++) {
-      if (document.getElementById(keys[i]) == null) {
-        return;
+      if (document.getElementById(keys[i]) != null) {
+        document.getElementById(keys[i]).textContent = languageData[keys[i]];
       }
-      document.getElementById(keys[i]).textContent = languageData[keys[i]];
     }
   } catch (error) {
     console.error("Error changing language:", error);
@@ -25,3 +24,8 @@ async function changeLanguage(languageCode) {
 
 // Set the default language here
 changeLanguage(localStorage.getItem("languageSelected") ?? "en");
+
+// Back Button to navigate to home page directly
+document.getElementById("backButton").addEventListener("click", function() {
+   window.location.href = '../../../';
+});
