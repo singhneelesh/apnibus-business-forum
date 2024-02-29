@@ -1,5 +1,5 @@
 // Load translations from JSON file
-const translations = fetch("reports-translations.json")
+const translations = fetch("reportsTranslations.json")
   .then((response) => response.json())
   .catch((error) => console.error("Error loading translations:", error));
 
@@ -24,3 +24,8 @@ async function changeLanguage(languageCode) {
 
 // Set the default language here
 changeLanguage(localStorage.getItem("languageSelected") ?? "en");
+
+// Back Button to navigate to home page directly
+document.getElementById("backButton").addEventListener("click", function() {
+  window.location.href = '../../../';
+});
