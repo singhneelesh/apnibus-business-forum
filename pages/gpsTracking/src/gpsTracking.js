@@ -21,6 +21,9 @@ async function changeLanguage(languageCode) {
         console.error("Key not found: "+ keys[i]);
       }
     }
+
+    // Setting the visibilty of loader gone
+    document.getElementById("overlay").style.visibility = "hidden";
   } catch (error) {
     console.error("Error changing language:", error);
   }

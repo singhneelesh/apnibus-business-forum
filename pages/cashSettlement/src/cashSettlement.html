@@ -172,9 +172,49 @@
 
       .table_of_contents-link {
         text-decoration: none;
-        opacity: 0.7;
         border-bottom: 1px solid rgba(55, 53, 47, 0.18);
       }
+      .overlay {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: #222;
+}
+
+.overlay__inner {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.overlay__content {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner {
+    width: 75px;
+    height: 75px;
+    display: inline-block;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.05);
+    border-top-color: #fff;
+    animation: spin 1s infinite linear;
+    border-radius: 100%;
+    border-style: solid;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
       table,
       th,
@@ -818,6 +858,12 @@
     </style>
   </head>
   <body>
+    <div class="overlay" id="overlay">
+      <div class="overlay__inner">
+          <div class="overlay__content"><span class="spinner"></span></div>
+      </div>
+  </div>
+  
     <article id="93c7ea58-d967-4652-8c1f-f1a3723eb661" class="page sans">
       <header>
         <img class="page-cover-image" src="../assets/Screenshot_2024-02-16_140618.png" style="object-position:center 21.809999999999995%" />

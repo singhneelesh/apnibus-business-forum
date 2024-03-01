@@ -17,6 +17,10 @@ async function changeLanguage(languageCode) {
         document.getElementById(keys[i]).textContent = languageData[keys[i]];
       }
     }
+
+    // Setting the visibilty of loader gone
+    document.getElementById("overlay").style.visibility = "hidden";
+    
   } catch (error) {
     console.error("Error changing language:", error);
   }
