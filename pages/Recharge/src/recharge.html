@@ -1,0 +1,1153 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Recharge </title>
+	<style>
+		/* cspell:disable-file */
+		/* webkit printing magic: print all background colors */
+		html {
+			-webkit-print-color-adjust: exact;
+		}
+
+		* {
+			box-sizing: border-box;
+			-webkit-print-color-adjust: exact;
+		}
+
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		@media only screen {
+			body {
+				margin: 2em auto;
+				color: rgb(55, 53, 47);
+			}
+		}
+
+		body {
+			line-height: 1.5;
+			margin: 30;
+		}
+
+		a,
+		a.visited {
+			color: inherit;
+			text-decoration: underline;
+		}
+
+		.pdf-relative-link-path {
+			font-size: 80%;
+			color: #444;
+		}
+
+		h1,
+		h2,
+		h3 {
+			letter-spacing: -0.01em;
+			line-height: 1.2;
+			font-weight: 600;
+			margin-bottom: 0;
+		}
+
+		.page-title {
+			font-size: 2.5rem;
+			font-weight: 700;
+			margin-top: 0;
+			margin-bottom: 0.75em;
+		}
+
+		h1 {
+			font-size: 1.875rem;
+			margin-top: 1.875rem;
+		}
+
+		h2 {
+			font-size: 1.5rem;
+			margin-top: 1.5rem;
+		}
+
+		h3 {
+			font-size: 1.25rem;
+			margin-top: 1.25rem;
+		}
+
+		.source {
+			border: 1px solid #ddd;
+			border-radius: 3px;
+			padding: 1.5em;
+			word-break: break-all;
+		}
+
+		.callout {
+			border-radius: 3px;
+			padding: 1rem;
+		}
+
+		figure {
+			margin: 1.25em 0;
+			page-break-inside: avoid;
+		}
+
+		figcaption {
+			opacity: 0.5;
+			font-size: 85%;
+			margin-top: 0.5em;
+		}
+
+		mark {
+			background-color: transparent;
+		}
+
+		.indented {
+			padding-left: 1.5em;
+		}
+
+		hr {
+			background: transparent;
+			display: block;
+			width: 100%;
+			height: 1px;
+			visibility: visible;
+			border: none;
+			border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+		}
+
+		img {
+			max-width: 100%;
+		}
+
+		@media only print {
+			img {
+				max-height: 100vh;
+				object-fit: contain;
+			}
+		}
+
+		@page {
+			margin: 1in;
+		}
+
+		.collection-content {
+			font-size: 0.875rem;
+		}
+
+		.column-list {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.column {
+			padding: 0 1em;
+		}
+
+		.column:first-child {
+			padding-left: 0;
+		}
+
+		.column:last-child {
+			padding-right: 0;
+		}
+
+		.table_of_contents-item {
+			display: block;
+			font-size: 0.875rem;
+			line-height: 1.3;
+			padding: 0.125rem;
+		}
+
+		.table_of_contents-indent-1 {
+			margin-left: 1.5rem;
+		}
+
+		.table_of_contents-indent-2 {
+			margin-left: 3rem;
+		}
+
+		.table_of_contents-indent-3 {
+			margin-left: 4.5rem;
+		}
+
+		.table_of_contents-link {
+			text-decoration: none;
+			opacity: 0.7;
+			border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid rgba(55, 53, 47, 0.09);
+			border-collapse: collapse;
+		}
+
+		table {
+			border-left: none;
+			border-right: none;
+		}
+
+		th,
+		td {
+			font-weight: normal;
+			padding: 0.25em 0.5em;
+			line-height: 1.5;
+			min-height: 1.5em;
+			text-align: left;
+		}
+
+		th {
+			color: rgba(55, 53, 47, 0.6);
+		}
+
+		ol,
+		ul {
+			margin: 0;
+			margin-block-start: 0.6em;
+			margin-block-end: 0.6em;
+		}
+
+		li>ol:first-child,
+		li>ul:first-child {
+			margin-block-start: 0.6em;
+		}
+
+		ul>li {
+			list-style: disc;
+		}
+
+		ul.to-do-list {
+			padding-inline-start: 0;
+		}
+
+		ul.to-do-list>li {
+			list-style: none;
+		}
+
+		.to-do-children-checked {
+			text-decoration: line-through;
+			opacity: 0.375;
+		}
+
+		ul.toggle>li {
+			list-style: none;
+		}
+
+		ul {
+			padding-inline-start: 1.7em;
+		}
+
+		ul>li {
+			padding-left: 0.1em;
+		}
+
+		ol {
+			padding-inline-start: 1.6em;
+		}
+
+		ol>li {
+			padding-left: 0.2em;
+		}
+
+		.mono ol {
+			padding-inline-start: 2em;
+		}
+
+		.mono ol>li {
+			text-indent: -0.4em;
+		}
+
+		.toggle {
+			padding-inline-start: 0em;
+			list-style-type: none;
+		}
+
+		/* Indent toggle children */
+		.toggle>li>details {
+			padding-left: 1.7em;
+		}
+
+		.toggle>li>details>summary {
+			margin-left: -1.1em;
+		}
+
+		.selected-value {
+			display: inline-block;
+			padding: 0 0.5em;
+			background: rgba(206, 205, 202, 0.5);
+			border-radius: 3px;
+			margin-right: 0.5em;
+			margin-top: 0.3em;
+			margin-bottom: 0.3em;
+			white-space: nowrap;
+		}
+
+		.collection-title {
+			display: inline-block;
+			margin-right: 1em;
+		}
+
+		.page-description {
+			margin-bottom: 2em;
+		}
+
+		.simple-table {
+			margin-top: 1em;
+			font-size: 0.875rem;
+			empty-cells: show;
+		}
+
+		.simple-table td {
+			height: 29px;
+			min-width: 120px;
+		}
+
+		.simple-table th {
+			height: 29px;
+			min-width: 120px;
+		}
+
+		.simple-table-header-color {
+			background: rgb(247, 246, 243);
+			color: black;
+		}
+
+		.simple-table-header {
+			font-weight: 500;
+		}
+
+		time {
+			opacity: 0.5;
+		}
+
+		.icon {
+			display: inline-block;
+			max-width: 1.2em;
+			max-height: 1.2em;
+			text-decoration: none;
+			vertical-align: text-bottom;
+			margin-right: 0.5em;
+		}
+
+		img.icon {
+			border-radius: 3px;
+		}
+
+		.user-icon {
+			width: 1.5em;
+			height: 1.5em;
+			border-radius: 100%;
+			margin-right: 0.5rem;
+		}
+
+		.user-icon-inner {
+			font-size: 0.8em;
+		}
+
+		.text-icon {
+			border: 1px solid #000;
+			text-align: center;
+		}
+
+		.page-cover-image {
+			display: block;
+			object-fit: cover;
+			width: 100%;
+			max-height: 30vh;
+		}
+
+		.page-header-icon {
+			font-size: 3rem;
+			margin-bottom: 1rem;
+		}
+
+		.page-header-icon-with-cover {
+			margin-top: -0.72em;
+			margin-left: 0.07em;
+		}
+
+		.page-header-icon img {
+			border-radius: 3px;
+		}
+
+		.link-to-page {
+			margin: 1em 0;
+			padding: 0;
+			border: none;
+			font-weight: 500;
+		}
+
+		p>.user {
+			opacity: 0.5;
+		}
+
+		td>.user,
+		td>time {
+			white-space: nowrap;
+		}
+
+		input[type="checkbox"] {
+			transform: scale(1.5);
+			margin-right: 0.6em;
+			vertical-align: middle;
+		}
+
+		p {
+			margin-top: 0.5em;
+			margin-bottom: 0.5em;
+		}
+
+		.image {
+			border: none;
+			margin: 1.5em 0;
+			padding: 0;
+			border-radius: 0;
+			text-align: center;
+		}
+
+		.code,
+		code {
+			background: rgba(135, 131, 120, 0.15);
+			border-radius: 3px;
+			padding: 0.2em 0.4em;
+			border-radius: 3px;
+			font-size: 85%;
+			tab-size: 2;
+		}
+
+		code {
+			color: #eb5757;
+		}
+
+		.code {
+			padding: 1.5em 1em;
+		}
+
+		.code-wrap {
+			white-space: pre-wrap;
+			word-break: break-all;
+		}
+
+		.code>code {
+			background: none;
+			padding: 0;
+			font-size: 100%;
+			color: inherit;
+		}
+
+		blockquote {
+			font-size: 1.25em;
+			margin: 1em 0;
+			padding-left: 1em;
+			border-left: 3px solid rgb(55, 53, 47);
+		}
+
+		.bookmark {
+			text-decoration: none;
+			max-height: 8em;
+			padding: 0;
+			display: flex;
+			width: 100%;
+			align-items: stretch;
+		}
+
+		.bookmark-title {
+			font-size: 0.85em;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			height: 1.75em;
+			white-space: nowrap;
+		}
+
+		.bookmark-text {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.bookmark-info {
+			flex: 4 1 180px;
+			padding: 12px 14px 14px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.bookmark-image {
+			width: 33%;
+			flex: 1 1 180px;
+			display: block;
+			position: relative;
+			object-fit: cover;
+			border-radius: 1px;
+		}
+
+		.bookmark-description {
+			color: rgba(55, 53, 47, 0.6);
+			font-size: 0.75em;
+			overflow: hidden;
+			max-height: 4.5em;
+			word-break: break-word;
+		}
+
+		.bookmark-href {
+			font-size: 0.75em;
+			margin-top: 0.25em;
+		}
+
+		.sans {
+			font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+		}
+
+		.code {
+			font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
+		}
+
+		.serif {
+			font-family: Lyon-Text, Georgia, ui-serif, serif;
+		}
+
+		.mono {
+			font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+		}
+
+		.pdf .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR';
+		}
+
+		.pdf .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+		}
+
+		.pdf .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR';
+		}
+
+		.pdf .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+		}
+
+		.highlight-default {
+			color: rgba(55, 53, 47, 1);
+		}
+
+		.highlight-gray {
+			color: rgba(120, 119, 116, 1);
+			fill: rgba(120, 119, 116, 1);
+		}
+
+		.highlight-brown {
+			color: rgba(159, 107, 83, 1);
+			fill: rgba(159, 107, 83, 1);
+		}
+
+		.highlight-orange {
+			color: rgba(217, 115, 13, 1);
+			fill: rgba(217, 115, 13, 1);
+		}
+
+		.highlight-yellow {
+			color: rgba(203, 145, 47, 1);
+			fill: rgba(203, 145, 47, 1);
+		}
+
+		.highlight-teal {
+			color: rgba(68, 131, 97, 1);
+			fill: rgba(68, 131, 97, 1);
+		}
+
+		.highlight-blue {
+			color: rgba(51, 126, 169, 1);
+			fill: rgba(51, 126, 169, 1);
+		}
+
+		.highlight-purple {
+			color: rgba(144, 101, 176, 1);
+			fill: rgba(144, 101, 176, 1);
+		}
+
+		.highlight-pink {
+			color: rgba(193, 76, 138, 1);
+			fill: rgba(193, 76, 138, 1);
+		}
+
+		.highlight-red {
+			color: rgba(212, 76, 71, 1);
+			fill: rgba(212, 76, 71, 1);
+		}
+
+		.highlight-gray_background {
+			background: rgba(241, 241, 239, 1);
+		}
+
+		.highlight-brown_background {
+			background: rgba(244, 238, 238, 1);
+		}
+
+		.highlight-orange_background {
+			background: rgba(251, 236, 221, 1);
+		}
+
+		.highlight-yellow_background {
+			background: rgba(251, 243, 219, 1);
+		}
+
+		.highlight-teal_background {
+			background: rgba(237, 243, 236, 1);
+		}
+
+		.highlight-blue_background {
+			background: rgba(231, 243, 248, 1);
+		}
+
+		.highlight-purple_background {
+			background: rgba(244, 240, 247, 0.8);
+		}
+
+		.highlight-pink_background {
+			background: rgba(249, 238, 243, 0.8);
+		}
+
+		.highlight-red_background {
+			background: rgba(253, 235, 236, 1);
+		}
+
+		.block-color-default {
+			color: inherit;
+			fill: inherit;
+		}
+
+		.block-color-gray {
+			color: rgba(120, 119, 116, 1);
+			fill: rgba(120, 119, 116, 1);
+		}
+
+		.block-color-brown {
+			color: rgba(159, 107, 83, 1);
+			fill: rgba(159, 107, 83, 1);
+		}
+
+		.block-color-orange {
+			color: rgba(217, 115, 13, 1);
+			fill: rgba(217, 115, 13, 1);
+		}
+
+		.block-color-yellow {
+			color: rgba(203, 145, 47, 1);
+			fill: rgba(203, 145, 47, 1);
+		}
+
+		.block-color-teal {
+			color: rgba(68, 131, 97, 1);
+			fill: rgba(68, 131, 97, 1);
+		}
+
+		.block-color-blue {
+			color: rgba(51, 126, 169, 1);
+			fill: rgba(51, 126, 169, 1);
+		}
+
+		.block-color-purple {
+			color: rgba(144, 101, 176, 1);
+			fill: rgba(144, 101, 176, 1);
+		}
+
+		.block-color-pink {
+			color: rgba(193, 76, 138, 1);
+			fill: rgba(193, 76, 138, 1);
+		}
+
+		.block-color-red {
+			color: rgba(212, 76, 71, 1);
+			fill: rgba(212, 76, 71, 1);
+		}
+
+		.block-color-gray_background {
+			background: rgba(241, 241, 239, 1);
+		}
+
+		.block-color-brown_background {
+			background: rgba(244, 238, 238, 1);
+		}
+
+		.block-color-orange_background {
+			background: rgba(251, 236, 221, 1);
+		}
+
+		.block-color-yellow_background {
+			background: rgba(251, 243, 219, 1);
+		}
+
+		.block-color-teal_background {
+			background: rgba(237, 243, 236, 1);
+		}
+
+		.block-color-blue_background {
+			background: rgba(231, 243, 248, 1);
+		}
+
+		.block-color-purple_background {
+			background: rgba(244, 240, 247, 0.8);
+		}
+
+		.block-color-pink_background {
+			background: rgba(249, 238, 243, 0.8);
+		}
+
+		.block-color-red_background {
+			background: rgba(253, 235, 236, 1);
+		}
+
+		.select-value-color-uiBlue {
+			background-color: rgba(35, 131, 226, .07);
+		}
+
+		.select-value-color-pink {
+			background-color: rgba(245, 224, 233, 1);
+		}
+
+		.select-value-color-purple {
+			background-color: rgba(232, 222, 238, 1);
+		}
+
+		.select-value-color-green {
+			background-color: rgba(219, 237, 219, 1);
+		}
+
+		.select-value-color-gray {
+			background-color: rgba(227, 226, 224, 1);
+		}
+
+		.select-value-color-translucentGray {
+			background-color: rgba(255, 255, 255, 0.0375);
+		}
+
+		.select-value-color-orange {
+			background-color: rgba(250, 222, 201, 1);
+		}
+
+		.select-value-color-brown {
+			background-color: rgba(238, 224, 218, 1);
+		}
+
+		.select-value-color-red {
+			background-color: rgba(255, 226, 221, 1);
+		}
+
+		.select-value-color-yellow {
+			background-color: rgba(253, 236, 200, 1);
+		}
+
+		.select-value-color-blue {
+			background-color: rgba(211, 229, 239, 1);
+		}
+
+		.select-value-color-pageGlass {
+			background-color: undefined;
+		}
+
+		.select-value-color-washGlass {
+			background-color: undefined;
+		}
+
+		.checkbox {
+			display: inline-flex;
+			vertical-align: text-bottom;
+			width: 16;
+			height: 16;
+			background-size: 16px;
+			margin-left: 2px;
+			margin-right: 5px;
+		}
+
+		.checkbox-on {
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+		}
+
+		.checkbox-off {
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+		}
+	</style>
+</head>
+
+<body>
+	<article id="e91b1c6a-3d59-4e9e-a5c6-d83d4fa96c72" class="page sans">
+		<header><img class="page-cover-image" src="../assets/Screenshot_2024-03-01_152458.jpg"
+				style="object-position:center 2.500000000000002%" />
+			<div class="page-header-icon page-header-icon-with-cover"><span class="icon">🚜</span></div>
+			<div style="display: flex;">
+				<span id="backButton" style="font-size: 32;">🏠&nbsp;/&nbsp;</span>
+				<h1 class="page-title" id="title">Recharge</h1>
+			</div>
+			<p class="page-description"></p>
+		</header>
+		<div class="page-body">
+			<nav id="35a7c6f8-980f-4f5d-9557-9eeb3373f56e" class="block-color-gray table_of_contents">
+				<div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link"
+						href="#d90ba367-dd21-49c2-a21c-e64a180ff1cb"><strong><strong
+								id="overview">Overview</strong></strong></a>
+				</div>
+				<div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link"
+						href="#9ae0be4d-249a-442f-9654-a778b7e888df" id="widgets">Widgets →</a></div>
+				<div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link"
+						href="#c5225dbe-e235-48b7-b284-78350454f9a1" id="rechargeCard">Recharge - Total Payment Due
+						Card</a></div>
+				<div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link"
+						href="#76e585bd-51c4-4164-8e09-4990b2caa2bf" id="invoiceCard">Individual Invoice Card</a></div>
+				<div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link"
+						href="#8ea6f956-773d-4757-a944-c4ae96c1f058" id="subscriptionCard">Subscription Card</a></div>
+				<div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link"
+						href="#3aa6b6c1-2e9b-47b1-80a5-d18ba36f0851" id="historyCard">Recharge History Card</a></div>
+				<div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link"
+						href="#aeab9f19-86bb-4230-8a5c-9303be54dfe4" id="faqs">FAQs →</a></div>
+				<div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link"
+						href="#0515a095-c5ab-43ef-873b-e4bba4f82c09" id="tutorials">Tutorials →</a></div>
+			</nav>
+			<h1 id="d90ba367-dd21-49c2-a21c-e64a180ff1cb" class=""><strong><strong
+						id="overview1">Overview</strong></strong></h1>
+			<p id="overviewSub" class="">&quot;This feature on the recharge page allows users
+				to effortlessly view their active subscriptions, pending payments, and recharge history. </p>
+			<h2 id="widgets1" class="">Widgets →</h2>
+			<details close="">
+				<summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0" id="rechargeCard1">Recharge -
+					Total Payment Due
+					Card</summary>
+				<div class="indented">
+					<p id="rechargeSub" class="">The Recharge-Total Payment Due Card is like a
+						summary to help users keep track of money matters.</p>
+					<figure id="76cdf473-e662-4a19-a425-d6468cfdcc83" class="image" style="text-align:center"><a
+							href="../assets/Untitled.png"><img style="width:424px" src="../assets/Untitled.png" /></a>
+					</figure>
+					<ul id="33aab6cc-9724-46ac-9e5e-fa1e15439526" class="bulleted-list">
+						<li style="list-style-type:disc" id="rechargeBullet1"><strong>Date:</strong> Displays the
+							current date for quick
+							reference.</li>
+					</ul>
+					<ul id="baf44052-e074-464e-a3ea-1ff53dccfb44" class="bulleted-list">
+						<li style="list-style-type:disc"><strong id="rechargeBullet2">Pending Invoices:</strong>
+							Indicates the total number
+							of invoices pending to be paid.</li>
+					</ul>
+					<ul id="9a7e9244-47ba-4ade-b6e4-99f70376852c" class="bulleted-list">
+						<li style="list-style-type:disc"><strong id="rechargeBullet3">Last Payment Due Date:</strong>
+							Displays the last date
+							by which the payment should be made.</li>
+					</ul>
+					<ul id="f240f39e-5115-40d8-94a0-040d6580ef52" class="bulleted-list">
+						<li style="list-style-type:disc"><strong id="rechargeBullet4">Total Amount Due:</strong> Shows
+							the total amount that
+							needs to be paid.</li>
+					</ul>
+					<ul id="78b62b30-8b01-4d1a-845d-bb1245d47af4" class="bulleted-list">
+						<li style="list-style-type:disc"><strong id="rechargeBullet5">Pay Now Button:</strong> A button
+							that allows users to
+							make the payment directly.</li>
+					</ul>
+				</div>
+			</details>
+			<details close="">
+				<summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0" id="invoiceCard1">Individual
+					Invoice Card
+				</summary>
+				<div class="indented">
+					<p id="invoiceCardSub" class="">This individual invoice card offers a detailed
+						view of each specific payment, making it easy for users to understand and manage their payment
+						commitment.</p>
+					<figure id="438ada69-cfc5-4ce8-9326-be8d95504c12" class="image" style="text-align:center"><a
+							href="../assets/Untitled%201.png"><img style="width:411px"
+								src="../assets/Untitled%201.png" /></a></figure>
+					<ul id="d66a6c58-78d1-4fbc-a032-cab0c0fcba56" class="bulleted-list">
+						<li style="list-style-type:disc" id="invoiceBullet1"><strong>Title:</strong> The title of the
+							invoice, giving a
+							quick idea of what the payment is for.</li>
+					</ul>
+					<ul id="e981a5b4-3edb-45d3-b6c8-646435a69817" class="bulleted-list">
+						<li style="list-style-type:disc" id="invoiceBullet2"><strong>Subtitle:</strong> Additional
+							details or a brief
+							description to provide context to the invoice.</li>
+					</ul>
+					<ul id="9094231b-6156-4c14-b2b7-12bf25d543c2" class="bulleted-list">
+						<li style="list-style-type:disc" id="invoiceBullet3"><strong>Summary/Description:</strong> A bit
+							more information or
+							a summary of the items/services covered by the invoice.</li>
+					</ul>
+					<ul id="51cea17a-99e8-4792-8ef4-32f8ae3d6442" class="bulleted-list">
+						<li style="list-style-type:disc" id="invoiceBullet4"><strong>Amount:</strong> The base amount of
+							the invoice,
+							showing the cost of the items or services.</li>
+					</ul>
+					<ul id="aab05a1a-baca-4c5e-8967-07e987e05fa1" class="bulleted-list">
+						<li style="list-style-type:disc" id="invoiceBullet5"><strong>GST (Goods and Services
+								Tax):</strong> If applicable,
+							display the GST amount separately.</li>
+					</ul>
+					<ul id="c91ccc00-3f45-4fba-a55d-ddbf6a0ef8d0" class="bulleted-list">
+						<li style="list-style-type:disc" id="invoiceBullet6"><strong>Total Amount:</strong> The grand
+							total, combining the
+							base amount and any applicable taxes.</li>
+					</ul>
+					<ul id="356bf1a5-540b-4a0e-b7b6-d3da515d95f0" class="bulleted-list">
+						<li style="list-style-type:disc" id="invoiceBullet7"><strong>Last Payment Due Date:</strong> The
+							deadline for making
+							the payment, ensuring timely processing.</li>
+					</ul>
+					<ul id="2a260c2a-9370-4271-a336-6d82516b7a52" class="bulleted-list">
+						<li style="list-style-type:disc" id="invoiceBullet8"><strong>Pay Now Button:</strong> A
+							user-friendly button to
+							initiate the payment process directly from the card.</li>
+					</ul>
+				</div>
+			</details>
+			<details close="">
+				<summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0" id="subscriptionCard1">
+					Subscription Card</summary>
+				<div class="indented">
+					<p id="subscriptionCardSub" class="">This card design allows users to easily
+						comprehend the key details of their subscriptions, including payment information and upcoming
+						expiry dates.</p>
+					<figure id="61ccf47f-747d-4917-89aa-cb3852e2a3af" class="image" style="text-align:center"><a
+							href="../assets/Untitled%202.png"><img style="width:421px"
+								src="../assets/Untitled%202.png" /></a></figure>
+					<ul id="b9306cc4-a7b4-4f93-b34f-c545499b3043" class="bulleted-list">
+						<li style="list-style-type:disc" id="subscriptionBullet1"><strong>Subscription Title:</strong>
+							The name or title of the
+							subscription plan.</li>
+					</ul>
+					<ul id="22742f35-7edf-4113-84dc-c3c3108070f9" class="bulleted-list">
+						<li style="list-style-type:disc" id="subscriptionBullet2"><strong>Expiry Date:</strong> The date
+							when the current
+							subscription period ends.</li>
+					</ul>
+					<ul id="8d0bcfde-5bd8-4cb6-a800-27195c97af83" class="bulleted-list">
+						<li style="list-style-type:disc" id="subscriptionBullet3"><strong>Subtitle:</strong> Additional
+							information or a brief
+							description related to the subscription.</li>
+					</ul>
+					<ul id="17c307e9-9f5c-4203-a158-0d6c6977c77f" class="bulleted-list">
+						<li style="list-style-type:disc" id="subscriptionBullet4"><strong>Start Payment
+								(Downpayment):</strong> Indicates the
+							initial amount paid at the beginning of the subscription.</li>
+					</ul>
+					<ul id="9715321d-8420-4269-90b5-6f4e7362f179" class="bulleted-list">
+						<li style="list-style-type:disc" id="subscriptionBullet5"><strong>Online Booking
+								Deduction:</strong> Specifies the amount
+							deducted from online bookings, providing transparency on the deduction process.</li>
+					</ul>
+					<ul id="a8e4dfcb-743d-4d2b-9692-2c27a814521d" class="bulleted-list">
+						<li style="list-style-type:disc" id="subscriptionBullet6"><strong>Yearly Recharge
+								Amount:</strong> Displays the total
+							amount required for the yearly recharge of the subscription.</li>
+					</ul>
+				</div>
+			</details>
+			<details close="">
+				<summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0" id="historyCard1">Recharge
+					History Card
+				</summary>
+				<div class="indented">
+					<p id="historyCardSub" class="">The Recharge History Page gives you a snapshot
+						of your past transactions. Explore each card for details like title, date, payment method, and a
+						breakdown of costs, providing a clear overview of your payment history. </p>
+					<figure id="367e82ac-7aa4-45a2-b90c-4f2f22b204e9" class="image" style="text-align:center"><a
+							href="../assets/Untitled%203.png"><img style="width:415px"
+								src="../assets/Untitled%203.png" /></a></figure>
+					<ul id="b6df4401-f38c-4bad-b68e-0c791e9cc2b1" class="bulleted-list">
+						<li style="list-style-type:disc" id="historyBullet1"><strong>Invoice Title:</strong> The title
+							or name associated
+							with the recharge transaction.</li>
+					</ul>
+					<ul id="0a60ff8a-af0f-4dd3-ab00-43789b7fa2cd" class="bulleted-list">
+						<li style="list-style-type:disc" id="historyBullet2"><strong>Invoice Date:</strong> The date
+							when the recharge
+							transaction took place.</li>
+					</ul>
+					<ul id="99d75b6d-67c1-4b37-a241-0f33b43d0f38" class="bulleted-list">
+						<li style="list-style-type:disc" id="historyBullet3"><strong>Invoice Subtitle:</strong>
+							Additional details or a
+							brief descriptor related to the recharge.</li>
+					</ul>
+					<ul id="75e8defd-41b8-4bc2-8f63-3547a81fcd3b" class="bulleted-list">
+						<li style="list-style-type:disc" id="historyBullet4"><strong>Invoice Description:</strong> A
+							summary or description
+							of the items or services covered by the recharge.</li>
+					</ul>
+					<ul id="e17c8668-fd5b-40d1-8d06-2c0769ff2d8f" class="bulleted-list">
+						<li style="list-style-type:disc" id="historyBullet5"><strong>Amount (GST Total):</strong> The
+							total amount,
+							inclusive of any applicable Goods and Services Tax (GST).</li>
+					</ul>
+					<ul id="7f10381e-e578-4f48-84e7-d6a87d5e648a" class="bulleted-list">
+						<li style="list-style-type:disc" id="historyBullet6"><strong>Payment Date:</strong> Indicates
+							the date when the
+							payment was made.</li>
+					</ul>
+					<ul id="1f758da8-6264-4226-be78-93ee71141c1e" class="bulleted-list">
+						<li style="list-style-type:disc" id="historyBullet7"><strong>Payment Method (Digital or
+								Cash):</strong> Specifies
+							whether the payment was made digitally or in cash.</li>
+					</ul>
+				</div>
+			</details>
+			<h1 id="faqs1" class="">FAQs →</h1>
+			<ul id="078f1f79-f8da-4a7f-b3d2-f34dec1ad9fa" class="toggle">
+				<li>
+					<details close="">
+						<summary id="faqsQ1">Why payment isn’t reflecting even if I have made the payment ?</summary>
+						<ul id="9e5fb3aa-b7bc-43b9-8ea0-e9b5eb435acd" class="bulleted-list">
+							<li style="list-style-type:disc" id="faqsQ1A">Payment data might not have synced yet, wait
+								at least 30
+								min for data to reflect.</li>
+						</ul>
+					</details>
+				</li>
+			</ul>
+			<ul id="151ec59f-00e8-4a9a-afd5-bfe9cc6c1c85" class="toggle">
+				<li>
+					<details close="">
+						<summary id="faqsQ2">My payment is failed but the amount is deducted ?</summary>
+						<ul id="65b01527-beb2-47e0-8541-607d435baf54" class="bulleted-list">
+							<li style="list-style-type:disc" id="faqsQ2A">Deducted amount will be refunded within 5-7
+								days.</li>
+						</ul>
+					</details>
+				</li>
+			</ul>
+			<h1 id="tutorials1" class="">Tutorials →</h1>
+			<ul id="9c1c77a2-53da-4725-825d-24907349dd85" class="toggle">
+				<li>
+					<details close="">
+						<summary id="tut1">How to view all my “<mark class="highlight-orange"><strong>Active
+									Subscriptions</strong></mark>”?</summary>
+						<ul id="a213595d-5ef2-4ebe-8e40-af331f3a7217" class="bulleted-list">
+							<li style="list-style-type:disc" id="tut1Bullet1">To open Recharge Page, click on the Side
+								Drawer located at
+								the top left of the screen.</li>
+							<figure id="daf14870-d5fb-4799-a832-57aaceec74a0" class="image"><a
+									href="../assets/Untitled%204.png"><img style="width:336px"
+										src="../assets/Untitled%204.png" /></a>
+							</figure>
+				</li>
+			</ul>
+			<ul id="4d6152ef-e410-4089-9276-58dbd13bb395" class="bulleted-list">
+				<li style="list-style-type:disc" id="tut1Bullet2">Click on “<strong>Recharge</strong>” button</li>
+				<figure id="bcbcaaa7-99e4-4ff7-8353-2832f7db0e6c" class="image"><a
+						href="../assets/Untitled%205.png"><img style="width:336px"
+							src="../assets/Untitled%205.png" /></a>
+				</figure>
+				</li>
+			</ul>
+			<ul id="03e62368-ee26-4258-8871-bc13df1da13b" class="bulleted-list">
+				<li style="list-style-type:disc" id="tut1Bullet3">“<strong>My Recharge</strong>” is set as Default on
+					Recharge Page</li>
+				<figure id="fb818d56-7dd5-473f-bb04-e2a3b1d6a048" class="image"><a
+						href="../assets/Untitled%206.png"><img style="width:384px"
+							src="../assets/Untitled%206.png" /></a>
+				</figure>
+				<p id="09221ff4-04a9-42eb-9737-8f219e3a3fee" class="">
+				</p>
+				</li>
+			</ul>
+			<ul id="7b202cbb-77cd-44f5-be10-cda436cc6c6c" class="bulleted-list">
+				<li style="list-style-type:disc" id="tut1Bullet4">To view “<strong>My Subscription</strong>” click on my
+					subscription button</li>
+				<figure id="e7710a2b-8937-49da-a7c4-4764af4e19db" class="image"><a
+						href="../assets/Untitled%207.png"><img style="width:373px"
+							src="../assets/Untitled%207.png" /></a>
+				</figure>
+				<figure id="8726bc8e-da41-46e9-a697-3e0fb684382f" class="image"><a
+						href="../assets/Untitled%208.png"><img style="width:336px"
+							src="../assets/Untitled%208.png" /></a>
+				</figure>
+				</li>
+			</ul>
+			<ul id="60a7d109-8ae8-4fee-9e8a-272819d4bdc2" class="bulleted-list">
+				<li style="list-style-type:disc" id="tut1Bullet5">To “<strong>Recharge History</strong>” click recharge
+					history button </li>
+				<figure id="44fcdec3-e2be-43b0-8cd1-d88c5e719ca3" class="image"><a
+						href="../assets/Untitled%209.png"><img style="width:336px"
+							src="../assets/Untitled%209.png" /></a>
+				</figure>
+				</li>
+			</ul>
+			</details>
+			</li>
+			</ul>
+			<ul id="3f89f478-3b7a-4927-8e70-a914ce08b045" class="toggle">
+				<li>
+					<details close="">
+						<summary id="tut2">How to pay <mark class="highlight-teal"><strong>Pending
+								</strong></mark>amount ?
+						</summary>
+						<ul id="60d5b44d-2750-4718-bbb2-16352ba23616" class="bulleted-list">
+							<li style="list-style-type:disc" id="tut2Bullet1">To pay pending , open recharge page.</li>
+							<figure id="49755acc-64d6-4f26-851b-07dadfea81ac" class="image"><a
+									href="../assets/Untitled%2010.png"><img style="width:371px"
+										src="../assets/Untitled%2010.png" /></a>
+							</figure>
+				</li>
+			</ul>
+			<ul id="a3cf05ad-a1a5-489a-8f5d-390c2644a897" class="bulleted-list">
+				<li style="list-style-type:disc" id="tut2Bullet2">Click “<strong>Pay Now</strong>” button</li>
+				<figure id="7bdfa738-5d37-4fa9-84ee-6766ff2582bb" class="image"><a href="../assets/Untitled.jpeg"><img
+							style="width:336px" src="../assets/Untitled.jpeg" /></a>
+				</figure>
+				</li>
+			</ul>
+			</details>
+			</li>
+			</ul>
+		</div>
+	</article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+	<script src="recharge.js"></script>
+</body>
+
+</html>
