@@ -1,5 +1,5 @@
 // Load translations from JSON file
-const translations = fetch("gpsTranslations.json")
+const translations = fetch("reports-translations.json")
   .then((response) => response.json())
   .catch((error) => console.error("Error loading translations:", error));
 
@@ -13,12 +13,8 @@ async function changeLanguage(languageCode) {
     var keys = Object.keys(languageData);
 
     for (let i = 0; i < keys.length; i++) {
-      const element = document.getElementById(keys[i]);
-      if(element){
-        element.textContent = languageData[keys[i]];
-      }
-      else{
-        console.error("Key not found: "+ keys[i]);
+      if (document.getElementById(keys[i]) != null) {
+        document.getElementById(keys[i]).textContent = languageData[keys[i]];
       }
     }
   } catch (error) {
@@ -28,8 +24,3 @@ async function changeLanguage(languageCode) {
 
 // Set the default language here
 changeLanguage(localStorage.getItem("languageSelected") ?? "en");
-
-// Back Button to navigate to home page directly
-document.getElementById("backButton").addEventListener("click", function() {
-   window.location.href = '../../../';
-});
