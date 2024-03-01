@@ -1,0 +1,1132 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Reports</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+	  body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+		margin: 30;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li>ol:first-child,
+      li>ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul>li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        padding-inline-start: 0;
+      }
+
+      ul.to-do-list>li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle>li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul>li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol>li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol>li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle>li>details {
+        padding-left: 1.7em;
+      }
+
+      .toggle>li>details>summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      .page-description {
+        margin-bottom: 2em;
+      }
+
+      .simple-table {
+        margin-top: 1em;
+        font-size: 0.875rem;
+        empty-cells: show;
+      }
+
+      .simple-table td {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table th {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table-header-color {
+        background: rgb(247, 246, 243);
+        color: black;
+      }
+
+      .simple-table-header {
+        font-weight: 500;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        max-height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p>.user {
+        opacity: 0.5;
+      }
+
+      td>.user,
+      td>time {
+        white-space: nowrap;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code>code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+
+      .code {
+        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
+      }
+
+      .serif {
+        font-family: Lyon-Text, Georgia, ui-serif, serif;
+      }
+
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+
+      .pdf .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP';
+      }
+
+      .pdf:lang(zh-CN) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC';
+      }
+
+      .pdf:lang(zh-TW) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC';
+      }
+
+      .pdf:lang(ko-KR) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR';
+      }
+
+      .pdf .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+      }
+
+      .pdf:lang(zh-CN) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+      }
+
+      .pdf:lang(zh-TW) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+      }
+
+      .pdf:lang(ko-KR) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+      }
+
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP';
+      }
+
+      .pdf:lang(zh-CN) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC';
+      }
+
+      .pdf:lang(zh-TW) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC';
+      }
+
+      .pdf:lang(ko-KR) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR';
+      }
+
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+      }
+
+      .pdf:lang(zh-CN) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+      }
+
+      .pdf:lang(zh-TW) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+      }
+
+      .pdf:lang(ko-KR) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+      }
+
+      .highlight-default {
+        color: rgba(55, 53, 47, 1);
+      }
+
+      .highlight-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+
+      .highlight-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+
+      .highlight-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+
+      .highlight-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+
+      .highlight-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+
+      .highlight-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+
+      .highlight-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+
+      .highlight-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+
+      .highlight-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+
+      .highlight-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+
+      .highlight-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+
+      .highlight-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+
+      .highlight-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+
+      .highlight-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+
+      .highlight-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+
+      .highlight-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+
+      .highlight-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+
+      .highlight-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+
+      .block-color-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+
+      .block-color-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+
+      .block-color-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+
+      .block-color-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+
+      .block-color-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+
+      .block-color-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+
+      .block-color-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+
+      .block-color-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+
+      .block-color-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+
+      .block-color-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+
+      .block-color-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+
+      .block-color-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+
+      .block-color-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+
+      .block-color-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+
+      .block-color-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+
+      .block-color-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+
+      .block-color-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+
+      .block-color-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+
+      .select-value-color-uiBlue {
+        background-color: rgba(35, 131, 226, .07);
+      }
+
+      .select-value-color-pink {
+        background-color: rgba(245, 224, 233, 1);
+      }
+
+      .select-value-color-purple {
+        background-color: rgba(232, 222, 238, 1);
+      }
+
+      .select-value-color-green {
+        background-color: rgba(219, 237, 219, 1);
+      }
+
+      .select-value-color-gray {
+        background-color: rgba(227, 226, 224, 1);
+      }
+
+      .select-value-color-translucentGray {
+        background-color: rgba(255, 255, 255, 0.0375);
+      }
+
+      .select-value-color-orange {
+        background-color: rgba(250, 222, 201, 1);
+      }
+
+      .select-value-color-brown {
+        background-color: rgba(238, 224, 218, 1);
+      }
+
+      .select-value-color-red {
+        background-color: rgba(255, 226, 221, 1);
+      }
+
+      .select-value-color-yellow {
+        background-color: rgba(253, 236, 200, 1);
+      }
+
+      .select-value-color-blue {
+        background-color: rgba(211, 229, 239, 1);
+      }
+
+      .select-value-color-pageGlass {
+        background-color: undefined;
+      }
+
+      .select-value-color-washGlass {
+        background-color: undefined;
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+
+      .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="772a187b-f748-4ae9-8d37-1d52e883aa3d" class="page sans">
+      <header>
+        <img class="page-cover-image" src="../assets/TitleImage.png" style="object-position:center 56.400000000000006%" />
+        <div class="page-header-icon page-header-icon-with-cover">
+          <span class="icon">🚜</span>
+        </div>
+		<div style="display: flex;">
+			<span id="backButton" style="font-size: 32;">🏠&nbsp;/&nbsp;</span>
+			<h1 id="title" class="page-title">Reports</h1>
+		  </div>
+        <p class="page-description"></p>
+      </header>
+      <div class="page-body">
+        <nav id="6659a952-e751-42b1-9494-b73efde4a78f" class="block-color-gray table_of_contents">
+          <div class="table_of_contents-item table_of_contents-indent-0">
+            <a class="table_of_contents-link" href="#801ee1d0-a3df-4b84-a8d1-82fa19efe0b0">
+              <strong>
+                <strong id="overview">Overview</strong>
+              </strong>
+            </a>
+          </div>
+          <div class="table_of_contents-item table_of_contents-indent-0">
+            <a id="faqs" class="table_of_contents-link" href="#faqs1">FAQs →</a>
+          </div>
+          <div class="table_of_contents-item table_of_contents-indent-0">
+            <a id="tutorials" class="table_of_contents-link" href="#5823d862-137f-42a5-91c4-583263683dc2">Tutorials →</a>
+          </div>
+        </nav>
+        <h1 id="801ee1d0-a3df-4b84-a8d1-82fa19efe0b0" class="">
+          <strong>
+            <strong id="overview1">Overview</strong>
+          </strong>
+        </h1>
+        <p id="overviewSub" class="">The &quot;Reports&quot; feature in the ApniBus Business app allows bus owners to generate various reports for their businesses, such as,
+        <div class="indented">
+          <ul id="52c77d28-9f6a-41c6-9999-aaaa0ee62727" class="bulleted-list">
+            <li style="list-style-type:disc" id="ovBullet1">Income Expense Report</li>
+          </ul>
+          <ul id="5aeed268-dab7-4f77-bbea-32062e06ec51" class="bulleted-list">
+            <li style="list-style-type:disc" id="ovBullet2">Stage Wise Earnings</li>
+          </ul>
+          <ul id="6b1551a8-7614-4ec7-bd12-a589ea904d96" class="bulleted-list">
+            <li style="list-style-type:disc" id="ovBullet3">Stage Wise Details </li>
+          </ul>
+        </div>
+        </p>
+        <p id="ovSubEnd" class=""> and the user can also see all the previous generated reports as well.</p>
+        <h1 id="faqs1" class="">FAQs →</h1>
+        <ul id="ff6ced61-cafd-4e77-aa76-d3f1cb4cf48e" class="toggle">
+          <li>
+            <details open="">
+              <summary id="faqq1">Why Report card is showing on the list page, but when I open it, it shows message to , wait as the waybill report is being generated?</summary>
+              <ul id="b4b3a29b-d075-4531-8b78-cda7db42175a" class="bulleted-list">
+                <li style="list-style-type:disc" id="faqa11">The primary reason for this is that the report generation happens on our side, and is processed in batches to maintain operability.</li>
+              </ul>
+              <ul id="2ebb838a-3256-4fd5-a92a-5faca8ec0ff2" class="bulleted-list">
+                <li style="list-style-type:disc" id="faqa12">So when you generate a report it gets queued in our system and it generally takes 10-15 minutes to generate your report.</li>
+              </ul>
+              <ul id="62200dbd-6048-492e-80a8-df9ece6d23d7" class="bulleted-list">
+                <li style="list-style-type:disc" id="faqa13">If it is taking any longer than that, please wait for 30 mins and if problem still persists contact support.</li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+        <ul id="840a6feb-a2d0-43fc-9729-39e81c6b8906" class="toggle">
+          <li>
+            <details open="">
+              <summary id="faqq2">When clicked on ‘Generate Waybill’ button, it shows error message referring waybill cant be generated for the selected bus, What does it mean?</summary>
+              <ul id="8fcae11c-c849-465e-affc-135e74d98600" class="bulleted-list">
+                <li style="list-style-type:disc" id="faqa21">This generally means that you’re trying to generate reports for a bus that doesn’t have any POS Machine associated with it, thus resulting in error.</li>
+              </ul>
+              <ul id="3be909b3-dd49-4e95-857d-71e2b01a2aee" class="bulleted-list">
+                <li style="list-style-type:disc" id="faqa22">The reports can only be generated for buses that have POS connected.</li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+        <h1 id="tutorials1" class="">Tutorials →</h1>
+        <ul id="bbd3e54c-0a16-4ecd-a37a-e58ab3578d07" class="toggle">
+          <li>
+            <details open="">
+              <summary id="tutq1">How to ‘View’ Reports?</summary>
+              <ol type="1" id="9c10575c-24bb-4ae7-9b2a-5cc9b80b0e9f" class="numbered-list" start="1">
+                <li id="tuta11">To open Reports, open side drawer from Home, then click ”Reports”. </li><div id="c4d96b93-1127-422b-9921-eec1dd0f89bf" class="column-list">
+                    <div id="22a27678-cec5-4c77-8d0d-37fec88e6aa7" style="width:50%" class="column">
+                      <figure id="c9a071d6-7031-40be-b70e-047ac62e6ce3" class="image">
+                        <a href="../assets/Untitled.png">
+                          <img style="width:350px" src="../assets/Untitled.png" />
+                        </a>
+                      </figure>
+                    </div>
+                    <div id="3ae7fa8c-2d2b-46db-b83a-63766b12988d" style="width:50%" class="column">
+                      <figure id="01f6ff31-d9eb-4a53-a68a-8b024688f30e" class="image">
+                        <a href="../assets/Untitled%201.png">
+                          <img style="width:248px" src="../assets/Untitled%201.png" />
+                        </a>
+                      </figure>
+                    </div>
+                  </div>
+                
+              </ol>
+              <ol type="1" id="1cb43175-21b0-4b4f-937b-9c59819fa1bd" class="numbered-list" start="2">
+                <li id="tuta12">In Reports Page, there is no default selected bus, and shows the reports for all the buses. </li><figure id="b76c6f3e-13b0-47e3-8ebc-d3bac0e52474" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%202.png">
+                      <img style="width:337px" src="../assets/Untitled%202.png" />
+                    </a>
+                  </figure>
+                  <p id="7634468c-27af-4c71-aa54-2fcb563502a9" class=""></p>
+                
+              </ol>
+              <ol type="1" id="e50f9518-ebc0-48b8-a681-d750aadb0197" class="numbered-list" start="3">
+                <li id="tuta13">To look for any specific report click the button corresponding to it.</li>
+              </ol>
+            </details>
+          </li>
+        </ul>
+        <ul id="61b07693-3982-4bcf-aacd-41f2f578e1d5" class="toggle">
+          <li>
+            <details open="">
+              <summary id="tutq2">How to ‘View’ Reports of any <strong>
+                  <mark class="highlight-teal">“specific bus”</mark>
+                </strong>? </summary>
+              <ol type="1" id="d1772e81-acc6-4ff0-9ddb-81bb2cbffd1e" class="numbered-list" start="1">
+                <li id="tuta21">To open Reports, open side drawer from Home, then click ”Reports”.</li> <div id="c456894e-dc64-4b34-9073-eb85011152cd" class="column-list">
+                    <div id="53989564-9593-4ddd-a4f5-03241ee76b28" style="width:50%" class="column">
+                      <figure id="a34c945d-4048-46af-8352-ee9b7ffeb5f6" class="image">
+                        <a href="../assets/Untitled.png">
+                          <img style="width:350px" src="../assets/Untitled.png" />
+                        </a>
+                      </figure>
+                    </div>
+                    <div id="3529d7b3-0c9e-418a-b19e-22a85604fc75" style="width:50%" class="column">
+                      <figure id="167200d3-798d-4437-aa78-5d9386562783" class="image">
+                        <a href="../assets/Untitled%201.png">
+                          <img style="width:248px" src="../assets/Untitled%201.png" />
+                        </a>
+                      </figure>
+                    </div>
+                  </div>
+                
+              </ol>
+              <ol type="1" id="736469ed-f4f1-49f3-9e16-a9144b3e24fb" class="numbered-list" start="2">
+                <li id="tuta22">In Reports Page, there is no default selected bus, and shows the reports for all the buses. </li><figure id="cf264f07-7575-4b0a-8550-6a1a9a546446" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%202.png">
+                      <img style="width:337px" src="../assets/Untitled%202.png" />
+                    </a>
+                  </figure>
+                  <p id="221a6d2b-92d5-4bef-81ec-0cd99099fcf8" class=""></p>
+                
+              </ol>
+              <ol type="1" id="25cd00fe-7898-4fea-b847-9701ff8b70b9" class="numbered-list" start="3">
+                <li id="tuta23">To look for report specific to any single bus, click the “All Buses” drop down on top of the page. </li><figure id="2eb7b3e5-8cf1-4ba5-916a-8c2ba0a1b5ad" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%203.png">
+                      <img style="width:336px" src="../assets/Untitled%203.png" />
+                    </a>
+                  </figure>
+                
+              </ol>
+              <p id="bfeefd7c-a900-4967-9968-0621a808f533" class=""></p>
+              <ol type="1" id="423f8334-48ad-4804-9e72-907c3da01141" class="numbered-list" start="4">
+                <li id="tuta24">Bus Selection windows pops up, select any bus from here &amp; submit to view that bus reports. </li><figure id="b961a8d3-fe82-4e41-9ecc-314ff9fc1d0c" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%204.png">
+                      <img style="width:342px" src="../assets/Untitled%204.png" />
+                    </a>
+                  </figure>
+                
+              </ol>
+              <ol type="1" id="ab9ccb96-bb17-4986-a519-db0c87084c7a" class="numbered-list" start="5">
+                <li id="tuta25">Now the reports will be shown for the selected bus.</li> <figure id="250a16c8-add8-487b-a1bf-e4f1a534f4a4" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%205.png">
+                      <img style="width:336px" src="../assets/Untitled%205.png" />
+                    </a>
+                  </figure>
+                
+              </ol>
+              <ol type="1" id="56051a8c-0d1e-4344-b3fd-40f5c0874f17" class="numbered-list" start="6">
+                <li id="tuta26">To look for any specific report click the button corresponding to it.</li>
+              </ol>
+            </details>
+          </li>
+        </ul>
+        <ul id="0f0db2a3-0492-4609-8a65-ec53bc55c88d" class="toggle">
+          <li>
+            <details open="">
+              <summary id="tutq3">How to ‘Download &amp; Share’ any report?</summary>
+              <ol type="1" id="9d3ae20a-d691-4604-b514-2fa6117d3b24" class="numbered-list" start="1">
+                <li id="tuta31">To open Reports, open side drawer from Home, then click ”Reports”.</li> <div id="184a984b-306d-4649-bdbf-d447a8e90cea" class="column-list">
+                    <div id="a6258583-5aca-4fdb-94b7-b31dba96afa4" style="width:50%" class="column">
+                      <figure id="31db0faf-9740-450a-95b8-37024605c115" class="image">
+                        <a href="../assets/Untitled.png">
+                          <img style="width:350px" src="../assets/Untitled.png" />
+                        </a>
+                      </figure>
+                    </div>
+                    <div id="cd35406d-a23a-48c9-9363-09f6eac7366a" style="width:50%" class="column">
+                      <figure id="8a34b525-354a-4602-a261-c9cd86516a35" class="image">
+                        <a href="../assets/Untitled%201.png">
+                          <img style="width:248px" src="../assets/Untitled%201.png" />
+                        </a>
+                      </figure>
+                    </div>
+                  </div>
+                
+              </ol>
+              <ol type="1" id="96d55426-749e-4e11-84f3-cc3f9d6138cd" class="numbered-list" start="2">
+                <li id="tuta32">In Reports Page, there is no default selected bus, and shows the reports for all the buses. </li><figure id="c9cb1a81-2a5f-4350-a244-2159bdc1d70b" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%202.png">
+                      <img style="width:337px" src="../assets/Untitled%202.png" />
+                    </a>
+                  </figure>
+                  <p id="13a72f0b-c79c-446a-8bc0-02e300f61b21" class=""></p>
+                
+              </ol>
+              <ol type="1" id="877aeac2-2bb8-4beb-9f6f-0ec792c746dc" class="numbered-list" start="3">
+                <li id="tuta33">To look for any specific report click the button corresponding to it. Now click the download button at the bottom right of the screen.</li> <figure id="de317795-3cfe-4b39-a832-5621b88aec19" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%206.png">
+                      <img style="width:348px" src="../assets/Untitled%206.png" />
+                    </a>
+                  </figure>
+                
+              </ol>
+              <ol type="1" id="b4709331-99bd-48fe-be2e-327cca338966" class="numbered-list" start="4">
+                <li id="tuta34">Storage permission will be requested to save the file to your local storage. Click ‘Allow” to download the report. </li><figure id="9ebd8ba3-0309-4260-a321-466b25ef6295" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%207.png">
+                      <img style="width:335px" src="../assets/Untitled%207.png" />
+                    </a>
+                  </figure>
+                
+              </ol>
+              <ol type="1" id="dd8086f8-ba87-40d9-8dbc-c544f6690267" class="numbered-list" start="5">
+                <li id="tuta35">After you allow the permission, the file be saved to your download folder, and a download will appear confirming the same. </li><figure id="99f78fe3-f51e-4c0b-ae7b-f9cefbd2cb65" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%208.png">
+                      <img style="width:336px" src="../assets/Untitled%208.png" />
+                    </a>
+                  </figure>
+                
+              </ol>
+              <ol type="1" id="684a23d6-01ae-44c0-8946-63d359ff3148" class="numbered-list" start="6">
+                <li id="tuta36">If you want to share the download file to any app, you can click the share button in the download confirmation dialog.</li> <figure id="b2dbf564-304f-4e25-a3ad-45b8261de0dc" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%209.png">
+                      <img style="width:333px" src="../assets/Untitled%209.png" />
+                    </a>
+                  </figure>
+                
+              </ol>
+              <ol type="1" id="7d315b7e-4bef-42a0-bc47-d4eaed6bf0b5" class="numbered-list" start="7">
+                <li id="tuta37">The user device default share window will pop-up and user can select any app to share the file. </li><figure id="1e85c8cf-6677-45b3-8c85-47417d759155" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%2010.png">
+                      <img style="width:340px" src="../assets/Untitled%2010.png" />
+                    </a>
+                  </figure>
+                
+              </ol>
+            </details>
+          </li>
+        </ul>
+        <ul id="6ce144fe-7484-40b3-b5f5-8658b9f20206" class="toggle">
+          <li>
+            <details open="">
+              <summary id="tutq4">How to ‘Delete’ any report?</summary>
+              <ol type="1" id="00c7f76a-370a-4421-9d9f-c6cac9d244a0" class="numbered-list" start="1">
+                <li id="tuta41">To open Reports, open side drawer from Home, then click ”Reports”. </li><div id="ebf4ee36-2e89-48b6-8046-afa786d75412" class="column-list">
+                    <div id="66b1fbe7-8cb5-4c24-8d88-6d063f9b8d46" style="width:50%" class="column">
+                      <figure id="4b138ea5-9036-4f23-bea3-48a7a99af9bc" class="image">
+                        <a href="../assets/Untitled.png">
+                          <img style="width:350px" src="../assets/Untitled.png" />
+                        </a>
+                      </figure>
+                    </div>
+                    <div id="bca13840-7049-42c7-bc4b-ab6e71918ef4" style="width:50%" class="column">
+                      <figure id="3749ff6e-2fee-466f-ae2b-a03718b07e4d" class="image">
+                        <a href="../assets/Untitled%201.png">
+                          <img style="width:248px" src="../assets/Untitled%201.png" />
+                        </a>
+                      </figure>
+                    </div>
+                  </div>
+                
+              </ol>
+              <ol type="1" id="a70b4cbf-78e2-4529-b7a5-826cd1f474e8" class="numbered-list" start="2">
+                <li id="tuta42">In Reports Page, there is no default selected bus, and shows the reports for all the buses. </li><figure id="2d4c4d8f-2e83-4f5e-bb38-6febceb2a8c9" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%202.png">
+                      <img style="width:337px" src="../assets/Untitled%202.png" />
+                    </a>
+                  </figure>
+                  <p id="bb31e561-fbdd-4695-ba75-be10fba81409" class=""></p>
+                
+              </ol>
+              <ol type="1" id="00409c0a-0557-4a3e-97ac-45584b19365f" class="numbered-list" start="3">
+                <li id="tuta43">To delete any report, click the delete button corresponding to it. </li> <figure id="ed19ead7-1aa1-4b0b-9cd6-bff6cc03a6c7" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%2011.png">
+                      <img style="width:345px" src="../assets/Untitled%2011.png" />
+                    </a>
+                  </figure>
+                
+              </ol>
+              <ol type="1" id="0925f845-a685-4c16-be39-6707b01d7350" class="numbered-list" start="3">
+                <li id="tuta44">Now confirm the Deletion on the pop up dialog. </li><figure id="407e93da-5f68-4603-9c43-05af1a592328" class="image" style="text-align:center">
+                    <a href="../assets/Untitled%2012.png">
+                      <img style="width:336px" src="../assets/Untitled%2012.png" />
+                    </a>
+                  </figure>
+                
+              </ol>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </article>
+    <span class="sans" style="font-size:14px;padding-top:2em"></span>
+  </body>
+  <script src="reports.js"></script>
+</html>
